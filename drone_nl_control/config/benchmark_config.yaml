@@ -1,0 +1,44 @@
+# Benchmarking configuration for drone_nl_control
+# Models mirror the paper: Gemma3, Qwen2.5, Llama3.2, DeepSeek (LLM)
+#                           Gemma3, Llama3.2-Vision, LLaVA1.6 (VLM)
+
+llm_models:
+  - name: "gemma3:4b"
+    label: "Gemma3"
+  - name: "qwen2.5:3b"
+    label: "Qwen2.5"
+  - name: "llama3.2:3b"
+    label: "Llama3.2"
+  - name: "deepseek-llm:7b"
+    label: "DeepSeek"
+
+vlm_models:
+  - name: "gemma3:4b"
+    label: "Gemma3"
+  - name: "llama3.2-vision:11b"
+    label: "Llama3.2-Vision"
+  - name: "llava:7b"
+    label: "LLaVA1.6"
+
+benchmark:
+  # LLM validity: number of synthetic prompts per model
+  llm_trials: 50
+  # VLM validity: number of test-image queries per model
+  vlm_trials: 30
+  # Mission success: number of full runs per LLM×VLM pair
+  mission_trials: 3
+  # Mission description used for all benchmark runs
+  mission_task: "find the walking person"
+  # Where results (YAML) and reports (TXT/CSV) are written
+  output_dir: "~/.drone_benchmark"
+
+ollama:
+  base_url: "http://localhost:11434"
+  temperature: 0.2
+
+mission:
+  max_steps: 15
+  hover_altitude_m: 3.0
+  turn_duration_sec: 2.0
+  move_duration_sec: 2.0
+  mavlink_connection: "udpin:127.0.0.1:14550"

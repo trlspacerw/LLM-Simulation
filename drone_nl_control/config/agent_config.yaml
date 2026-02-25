@@ -1,0 +1,19 @@
+ollama:
+  base_url: "http://localhost:11434"
+  llm_model: "gemma3:4b"
+  vlm_model: "gemma3:4b"
+  temperature: 0.2
+
+mission:
+  max_steps: 20
+  command_history_len: 5
+  hover_altitude_m: 8.0
+
+action_space:
+  turn_duration_sec: 2.0
+  move_duration_sec: 2.0
+  max_turn_deg: 180.0
+  max_move_m: 20.0
+
+mavlink:
+  connection_string: "udpin:127.0.0.1:14550"

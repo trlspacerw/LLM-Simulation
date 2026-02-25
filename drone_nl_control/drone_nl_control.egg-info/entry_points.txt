@@ -1,0 +1,6 @@
+[console_scripts]
+bench_llm = drone_nl_control.bench_llm:main
+bench_mission = drone_nl_control.bench_mission:main
+bench_report = drone_nl_control.report:main
+bench_vlm = drone_nl_control.bench_vlm:main
+mission_controller = drone_nl_control.mission_controller:main
