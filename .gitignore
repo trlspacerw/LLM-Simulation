@@ -1,0 +1,29 @@
+# External ROS dependency packages
+ardupilot_dds_tests/
+ardupilot_gazebo/
+ardupilot_gz/
+ardupilot_msgs/
+ardupilot_sitl/
+ardupilot_sitl_models/
+gps_umd/
+micro_ros_agent/
+ros_gz/
+sdformat_urdf/
+src/
+
+# SSH / secret keys
+gazebo_ssh_key
+gazebo_ssh_key.pub
+simulation_key.txt
+simulation_key.txt.pub
+
+# Python build artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# ROS2 install/log artifacts
+install/
+log/
