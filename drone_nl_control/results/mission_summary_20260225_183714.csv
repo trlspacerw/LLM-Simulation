@@ -1,0 +1,13 @@
+combo,llm,vlm,trials,successes,success_rate_pct,avg_steps
+DeepSeek × Gemma3,DeepSeek,Gemma3,3,2,66.7,8.0
+DeepSeek × LLaVA1.6,DeepSeek,LLaVA1.6,3,3,100.0,4.0
+DeepSeek × Llama3.2-Vision,DeepSeek,Llama3.2-Vision,3,1,33.3,13.7
+Gemma3 × Gemma3,Gemma3,Gemma3,3,2,66.7,10.3
+Gemma3 × LLaVA1.6,Gemma3,LLaVA1.6,3,0,0.0,15.0
+Gemma3 × Llama3.2-Vision,Gemma3,Llama3.2-Vision,3,0,0.0,15.0
+Llama3.2 × Gemma3,Llama3.2,Gemma3,3,3,100.0,2.0
+Llama3.2 × LLaVA1.6,Llama3.2,LLaVA1.6,3,2,66.7,6.3
+Llama3.2 × Llama3.2-Vision,Llama3.2,Llama3.2-Vision,3,2,66.7,8.3
+Qwen2.5 × Gemma3,Qwen2.5,Gemma3,3,2,66.7,6.3
+Qwen2.5 × LLaVA1.6,Qwen2.5,LLaVA1.6,3,3,100.0,2.0
+Qwen2.5 × Llama3.2-Vision,Qwen2.5,Llama3.2-Vision,3,2,66.7,10.0

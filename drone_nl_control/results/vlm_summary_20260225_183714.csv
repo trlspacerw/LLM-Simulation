@@ -1,0 +1,4 @@
+model,label,trials,valid,invalid,errors,validity_pct,avg_latency_sec
+gemma3:4b,Gemma3,30,30,0,0,100.0,0.908
+llava:7b,LLaVA1.6,30,30,0,0,100.0,2.553
+llama3.2-vision:11b,Llama3.2-Vision,30,30,0,0,100.0,2.645

@@ -1,0 +1,1520 @@
+config:
+  llm_trials: 50
+  mission_task: find the walking person
+  mission_trials: 3
+  output_dir: ~/.drone_benchmark
+  vlm_trials: 30
+results:
+  DeepSeek × Gemma3:
+    avg_steps: 8.0
+    llm: DeepSeek
+    llm_model: deepseek-llm:7b
+    success_rate_pct: 66.7
+    successes: 2
+    trial_details:
+    - error: null
+      result: success
+      steps:
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 39°, speed 0.0m/s, armed'
+        step: 1
+        vlm: true
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 39°, speed 0.0m/s, armed'
+        step: 2
+        vlm: false
+      - cmd: Move(3.0)
+        state: 'Drone state: altitude 3.0m, heading 355°, speed 0.0m/s, armed'
+        step: 3
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 355°, speed 0.0m/s, armed'
+        step: 4
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 84°, speed 0.0m/s, armed'
+        step: 5
+        vlm: false
+      - cmd: Move(10.0)
+        state: 'Drone state: altitude 3.0m, heading 84°, speed 0.0m/s, armed'
+        step: 6
+        vlm: true
+      - cmd: null
+        note: SUCCESS
+        step: 7
+        vlm: true
+      steps_taken: 7
+      trial: 1
+    - error: null
+      result: timeout
+      steps:
+      - cmd: Move(-5.0)
+        state: 'Drone state: altitude 3.0m, heading 171°, speed 0.0m/s, armed'
+        step: 1
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 171°, speed 0.0m/s, armed'
+        step: 2
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 258°, speed 0.0m/s, armed'
+        step: 3
+        vlm: false
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 301°, speed 0.0m/s, armed'
+        step: 4
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 301°, speed 0.0m/s, armed'
+        step: 5
+        vlm: false
+      - cmd: Move(10.0)
+        state: 'Drone state: altitude 3.0m, heading 301°, speed 0.0m/s, armed'
+        step: 6
+        vlm: false
+      - cmd: Move(-3.0)
+        state: 'Drone state: altitude 3.0m, heading 28°, speed 0.0m/s, armed'
+        step: 7
+        vlm: false
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 28°, speed 0.0m/s, armed'
+        step: 8
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 28°, speed 0.0m/s, armed'
+        step: 9
+        vlm: false
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 72°, speed 0.0m/s, armed'
+        step: 10
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 72°, speed 0.0m/s, armed'
+        step: 11
+        vlm: false
+      - cmd: Move(10.0)
+        state: 'Drone state: altitude 3.0m, heading 72°, speed 0.0m/s, armed'
+        step: 12
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 344°, speed 0.0m/s, armed'
+        step: 13
+        vlm: false
+      - cmd: Move(10.0)
+        state: 'Drone state: altitude 3.0m, heading 71°, speed 0.0m/s, armed'
+        step: 14
+        vlm: false
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 71°, speed 0.0m/s, armed'
+        step: 15
+        vlm: false
+      steps_taken: 15
+      trial: 2
+    - error: null
+      result: success
+      steps:
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 70°, speed 0.0m/s, armed'
+        step: 1
+        vlm: true
+      - cmd: null
+        note: SUCCESS
+        step: 2
+        vlm: true
+      steps_taken: 2
+      trial: 3
+    trials: 3
+    vlm: Gemma3
+    vlm_model: gemma3:4b
+  DeepSeek × LLaVA1.6:
+    avg_steps: 4.0
+    llm: DeepSeek
+    llm_model: deepseek-llm:7b
+    success_rate_pct: 100.0
+    successes: 3
+    trial_details:
+    - error: null
+      result: success
+      steps:
+      - cmd: Move(-5.0)
+        state: 'Drone state: altitude 3.0m, heading 167°, speed 0.0m/s, armed'
+        step: 1
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 158°, speed 0.0m/s, armed'
+        step: 2
+        vlm: false
+      - cmd: Move(3.0)
+        state: 'Drone state: altitude 3.0m, heading 244°, speed 0.0m/s, armed'
+        step: 3
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 244°, speed 1.7m/s, armed'
+        step: 4
+        vlm: false
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 287°, speed 0.0m/s, armed'
+        step: 5
+        vlm: false
+      - cmd: Turn(180.0)
+        state: 'Drone state: altitude 3.0m, heading 287°, speed 1.0m/s, armed'
+        step: 6
+        vlm: false
+      - cmd: Move(3.0)
+        state: 'Drone state: altitude 3.0m, heading 45°, speed 0.0m/s, armed'
+        step: 7
+        vlm: true
+      - cmd: null
+        note: SUCCESS
+        step: 8
+        vlm: true
+      steps_taken: 8
+      trial: 1
+    - error: null
+      result: success
+      steps:
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 45°, speed 0.0m/s, armed'
+        step: 1
+        vlm: true
+      - cmd: null
+        note: SUCCESS
+        step: 2
+        vlm: true
+      steps_taken: 2
+      trial: 2
+    - error: null
+      result: success
+      steps:
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 44°, speed 0.0m/s, armed'
+        step: 1
+        vlm: true
+      - cmd: null
+        note: SUCCESS
+        step: 2
+        vlm: true
+      steps_taken: 2
+      trial: 3
+    trials: 3
+    vlm: LLaVA1.6
+    vlm_model: llava:7b
+  DeepSeek × Llama3.2-Vision:
+    avg_steps: 13.7
+    llm: DeepSeek
+    llm_model: deepseek-llm:7b
+    success_rate_pct: 33.3
+    successes: 1
+    trial_details:
+    - error: null
+      result: success
+      steps:
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 71°, speed 0.0m/s, armed'
+        step: 1
+        vlm: true
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 71°, speed 0.0m/s, armed'
+        step: 2
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 342°, speed 0.0m/s, armed'
+        step: 3
+        vlm: false
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 27°, speed 0.0m/s, armed'
+        step: 4
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 26°, speed 0.0m/s, armed'
+        step: 5
+        vlm: false
+      - cmd: Move(10.0)
+        state: 'Drone state: altitude 3.0m, heading 70°, speed 0.0m/s, armed'
+        step: 6
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 70°, speed 0.0m/s, armed'
+        step: 7
+        vlm: false
+      - cmd: Move(-3.0)
+        state: 'Drone state: altitude 3.0m, heading 158°, speed 0.0m/s, armed'
+        step: 8
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 158°, speed 0.0m/s, armed'
+        step: 9
+        vlm: false
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 158°, speed 0.0m/s, armed'
+        step: 10
+        vlm: true
+      - cmd: null
+        note: SUCCESS
+        step: 11
+        vlm: true
+      steps_taken: 11
+      trial: 1
+    - error: null
+      result: timeout
+      steps:
+      - cmd: Move(-5.0)
+        state: 'Drone state: altitude 3.0m, heading 201°, speed 0.0m/s, armed'
+        step: 1
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 201°, speed 0.0m/s, armed'
+        step: 2
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 201°, speed 0.0m/s, armed'
+        step: 3
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 17°, speed 0.0m/s, armed'
+        step: 4
+        vlm: false
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 60°, speed 0.0m/s, armed'
+        step: 5
+        vlm: true
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 60°, speed 0.0m/s, armed'
+        step: 6
+        vlm: false
+      - cmd: Move(10.0)
+        state: 'Drone state: altitude 3.0m, heading 332°, speed 0.0m/s, armed'
+        step: 7
+        vlm: false
+      - cmd: Move(3.0)
+        state: 'Drone state: altitude 3.0m, heading 332°, speed 0.0m/s, armed'
+        step: 8
+        vlm: false
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 332°, speed 0.0m/s, armed'
+        step: 9
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 332°, speed 0.0m/s, armed'
+        step: 10
+        vlm: false
+      - cmd: Move(-3.0)
+        state: 'Drone state: altitude 3.0m, heading 332°, speed 0.0m/s, armed'
+        step: 11
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 16°, speed 0.0m/s, armed'
+        step: 12
+        vlm: false
+      - cmd: Move(10.0)
+        state: 'Drone state: altitude 3.0m, heading 102°, speed 0.0m/s, armed'
+        step: 13
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 102°, speed 0.0m/s, armed'
+        step: 14
+        vlm: false
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 190°, speed 0.0m/s, armed'
+        step: 15
+        vlm: true
+      steps_taken: 15
+      trial: 2
+    - error: null
+      result: timeout
+      steps:
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 190°, speed 0.0m/s, armed'
+        step: 1
+        vlm: false
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 190°, speed 0.0m/s, armed'
+        step: 2
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 145°, speed 0.0m/s, armed'
+        step: 3
+        vlm: false
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 234°, speed 0.0m/s, armed'
+        step: 4
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 234°, speed 0.0m/s, armed'
+        step: 5
+        vlm: false
+      - cmd: Move(-10.0)
+        state: 'Drone state: altitude 3.0m, heading 321°, speed 0.0m/s, armed'
+        step: 6
+        vlm: false
+      - cmd: Move(-3.0)
+        state: 'Drone state: altitude 3.0m, heading 321°, speed 0.0m/s, armed'
+        step: 7
+        vlm: false
+      - cmd: Move(-3.0)
+        state: 'Drone state: altitude 3.0m, heading 321°, speed 0.0m/s, armed'
+        step: 8
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 321°, speed 0.0m/s, armed'
+        step: 9
+        vlm: false
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 48°, speed 0.0m/s, armed'
+        step: 10
+        vlm: true
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 48°, speed 0.0m/s, armed'
+        step: 11
+        vlm: false
+      - cmd: Turn(180.0)
+        state: 'Drone state: altitude 3.0m, heading 48°, speed 0.0m/s, armed'
+        step: 12
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 253°, speed 0.0m/s, armed'
+        step: 13
+        vlm: false
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 253°, speed 0.0m/s, armed'
+        step: 14
+        vlm: false
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 166°, speed 0.0m/s, armed'
+        step: 15
+        vlm: false
+      steps_taken: 15
+      trial: 3
+    trials: 3
+    vlm: Llama3.2-Vision
+    vlm_model: llama3.2-vision:11b
+  Gemma3 × Gemma3:
+    avg_steps: 10.3
+    llm: Gemma3
+    llm_model: gemma3:4b
+    success_rate_pct: 66.7
+    successes: 2
+    trial_details:
+    - error: null
+      result: timeout
+      steps:
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 92°, speed 0.0m/s, armed'
+        step: 1
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 5°, speed 0.0m/s, armed'
+        step: 2
+        vlm: false
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 15°, speed 0.0m/s, armed'
+        step: 3
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 89°, speed 0.0m/s, armed'
+        step: 4
+        vlm: false
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 90°, speed 0.0m/s, armed'
+        step: 5
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 47°, speed 0.0m/s, armed'
+        step: 6
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 91°, speed 0.0m/s, armed'
+        step: 7
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 4°, speed 0.0m/s, armed'
+        step: 8
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 91°, speed 0.0m/s, armed'
+        step: 9
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 4°, speed 0.0m/s, armed'
+        step: 10
+        vlm: false
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 4°, speed 0.0m/s, armed'
+        step: 11
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 47°, speed 0.0m/s, armed'
+        step: 12
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 3°, speed 0.0m/s, armed'
+        step: 13
+        vlm: false
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 46°, speed 0.0m/s, armed'
+        step: 14
+        vlm: true
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 317°, speed 0.0m/s, armed'
+        step: 15
+        vlm: false
+      steps_taken: 15
+      trial: 1
+    - error: null
+      result: success
+      steps:
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 230°, speed 0.0m/s, armed'
+        step: 1
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 142°, speed 0.0m/s, armed'
+        step: 2
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 154°, speed 0.0m/s, armed'
+        step: 3
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 142°, speed 0.0m/s, armed'
+        step: 4
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 231°, speed 0.0m/s, armed'
+        step: 5
+        vlm: false
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 318°, speed 0.0m/s, armed'
+        step: 6
+        vlm: false
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 275°, speed 0.0m/s, armed'
+        step: 7
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 230°, speed 0.0m/s, armed'
+        step: 8
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 274°, speed 0.0m/s, armed'
+        step: 9
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 318°, speed 0.0m/s, armed'
+        step: 10
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 231°, speed 0.0m/s, armed'
+        step: 11
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 320°, speed 0.0m/s, armed'
+        step: 12
+        vlm: false
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 46°, speed 0.0m/s, armed'
+        step: 13
+        vlm: true
+      - cmd: null
+        note: SUCCESS
+        step: 14
+        vlm: true
+      steps_taken: 14
+      trial: 2
+    - error: null
+      result: success
+      steps:
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 47°, speed 0.0m/s, armed'
+        step: 1
+        vlm: true
+      - cmd: null
+        note: SUCCESS
+        step: 2
+        vlm: true
+      steps_taken: 2
+      trial: 3
+    trials: 3
+    vlm: Gemma3
+    vlm_model: gemma3:4b
+  Gemma3 × LLaVA1.6:
+    avg_steps: 15.0
+    llm: Gemma3
+    llm_model: gemma3:4b
+    success_rate_pct: 0.0
+    successes: 0
+    trial_details:
+    - error: null
+      result: timeout
+      steps:
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 232°, speed 0.0m/s, armed'
+        step: 1
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 143°, speed 0.0m/s, armed'
+        step: 2
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 231°, speed 0.0m/s, armed'
+        step: 3
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 181°, speed 0.0m/s, armed'
+        step: 4
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 232°, speed 0.0m/s, armed'
+        step: 5
+        vlm: false
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 275°, speed 0.0m/s, armed'
+        step: 6
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 231°, speed 0.0m/s, armed'
+        step: 7
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 275°, speed 0.0m/s, armed'
+        step: 8
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 188°, speed 0.0m/s, armed'
+        step: 9
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 275°, speed 0.0m/s, armed'
+        step: 10
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 187°, speed 0.0m/s, armed'
+        step: 11
+        vlm: false
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 231°, speed 0.0m/s, armed'
+        step: 12
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 187°, speed 0.0m/s, armed'
+        step: 13
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 208°, speed 0.0m/s, armed'
+        step: 14
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 192°, speed 0.0m/s, armed'
+        step: 15
+        vlm: false
+      steps_taken: 15
+      trial: 1
+    - error: null
+      result: timeout
+      steps:
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 231°, speed 0.0m/s, armed'
+        step: 1
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 145°, speed 0.0m/s, armed'
+        step: 2
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 232°, speed 0.0m/s, armed'
+        step: 3
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 145°, speed 0.0m/s, armed'
+        step: 4
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 189°, speed 0.0m/s, armed'
+        step: 5
+        vlm: false
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 321°, speed 0.0m/s, armed'
+        step: 6
+        vlm: false
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 298°, speed 0.0m/s, armed'
+        step: 7
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 257°, speed 0.0m/s, armed'
+        step: 8
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 253°, speed 0.0m/s, armed'
+        step: 9
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 321°, speed 0.0m/s, armed'
+        step: 10
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 276°, speed 0.0m/s, armed'
+        step: 11
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 321°, speed 0.0m/s, armed'
+        step: 12
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 5°, speed 0.0m/s, armed'
+        step: 13
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 279°, speed 0.0m/s, armed'
+        step: 14
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 322°, speed 0.0m/s, armed'
+        step: 15
+        vlm: false
+      steps_taken: 15
+      trial: 2
+    - error: null
+      result: timeout
+      steps:
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 6°, speed 0.0m/s, armed'
+        step: 1
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 318°, speed 0.0m/s, armed'
+        step: 2
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 327°, speed 0.0m/s, armed'
+        step: 3
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 279°, speed 0.0m/s, armed'
+        step: 4
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 6°, speed 0.0m/s, armed'
+        step: 5
+        vlm: false
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 92°, speed 0.0m/s, armed'
+        step: 6
+        vlm: true
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 92°, speed 0.0m/s, armed'
+        step: 7
+        vlm: false
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 48°, speed 0.0m/s, armed'
+        step: 8
+        vlm: true
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 49°, speed 0.0m/s, armed'
+        step: 9
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 322°, speed 0.0m/s, armed'
+        step: 10
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 345°, speed 0.0m/s, armed'
+        step: 11
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 279°, speed 0.0m/s, armed'
+        step: 12
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 7°, speed 0.0m/s, armed'
+        step: 13
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 278°, speed 0.0m/s, armed'
+        step: 14
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 300°, speed 0.0m/s, armed'
+        step: 15
+        vlm: false
+      steps_taken: 15
+      trial: 3
+    trials: 3
+    vlm: LLaVA1.6
+    vlm_model: llava:7b
+  Gemma3 × Llama3.2-Vision:
+    avg_steps: 15.0
+    llm: Gemma3
+    llm_model: gemma3:4b
+    success_rate_pct: 0.0
+    successes: 0
+    trial_details:
+    - error: null
+      result: timeout
+      steps:
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 46°, speed 0.0m/s, armed'
+        step: 1
+        vlm: true
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 46°, speed 0.0m/s, armed'
+        step: 2
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 319°, speed 0.0m/s, armed'
+        step: 3
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 319°, speed 0.0m/s, armed'
+        step: 4
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 318°, speed 0.0m/s, armed'
+        step: 5
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 47°, speed 0.0m/s, armed'
+        step: 6
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 318°, speed 0.0m/s, armed'
+        step: 7
+        vlm: false
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 318°, speed 0.0m/s, armed'
+        step: 8
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 318°, speed 0.0m/s, armed'
+        step: 9
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 2°, speed 0.0m/s, armed'
+        step: 10
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 275°, speed 0.0m/s, armed'
+        step: 11
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 2°, speed 0.0m/s, armed'
+        step: 12
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 275°, speed 0.0m/s, armed'
+        step: 13
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 319°, speed 0.0m/s, armed'
+        step: 14
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 231°, speed 0.0m/s, armed'
+        step: 15
+        vlm: false
+      steps_taken: 15
+      trial: 1
+    - error: null
+      result: timeout
+      steps:
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 274°, speed 0.0m/s, armed'
+        step: 1
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 1°, speed 0.0m/s, armed'
+        step: 2
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 273°, speed 0.0m/s, armed'
+        step: 3
+        vlm: false
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 359°, speed 0.0m/s, armed'
+        step: 4
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 359°, speed 0.0m/s, armed'
+        step: 5
+        vlm: false
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 359°, speed 0.0m/s, armed'
+        step: 6
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 316°, speed 0.0m/s, armed'
+        step: 7
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 359°, speed 0.0m/s, armed'
+        step: 8
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 274°, speed 0.0m/s, armed'
+        step: 9
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 274°, speed 0.0m/s, armed'
+        step: 10
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 359°, speed 0.0m/s, armed'
+        step: 11
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 316°, speed 0.0m/s, armed'
+        step: 12
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 229°, speed 0.0m/s, armed'
+        step: 13
+        vlm: false
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 229°, speed 0.0m/s, armed'
+        step: 14
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 272°, speed 0.0m/s, armed'
+        step: 15
+        vlm: false
+      steps_taken: 15
+      trial: 2
+    - error: null
+      result: timeout
+      steps:
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 273°, speed 0.0m/s, armed'
+        step: 1
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 273°, speed 0.0m/s, armed'
+        step: 2
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 275°, speed 0.0m/s, armed'
+        step: 3
+        vlm: false
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 2°, speed 0.0m/s, armed'
+        step: 4
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 319°, speed 0.0m/s, armed'
+        step: 5
+        vlm: false
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 2°, speed 0.0m/s, armed'
+        step: 6
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 319°, speed 0.0m/s, armed'
+        step: 7
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 3°, speed 0.0m/s, armed'
+        step: 8
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 275°, speed 0.0m/s, armed'
+        step: 9
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 3°, speed 0.0m/s, armed'
+        step: 10
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 3°, speed 0.0m/s, armed'
+        step: 11
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 275°, speed 0.0m/s, armed'
+        step: 12
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 231°, speed 0.0m/s, armed'
+        step: 13
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 231°, speed 0.0m/s, armed'
+        step: 14
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 318°, speed 0.0m/s, armed'
+        step: 15
+        vlm: false
+      steps_taken: 15
+      trial: 3
+    trials: 3
+    vlm: Llama3.2-Vision
+    vlm_model: llama3.2-vision:11b
+  Llama3.2 × Gemma3:
+    avg_steps: 2.0
+    llm: Llama3.2
+    llm_model: llama3.2:3b
+    success_rate_pct: 100.0
+    successes: 3
+    trial_details:
+    - error: null
+      result: success
+      steps:
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 50°, speed 0.0m/s, armed'
+        step: 1
+        vlm: true
+      - cmd: null
+        note: SUCCESS
+        step: 2
+        vlm: true
+      steps_taken: 2
+      trial: 1
+    - error: null
+      result: success
+      steps:
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 51°, speed 0.0m/s, armed'
+        step: 1
+        vlm: true
+      - cmd: null
+        note: SUCCESS
+        step: 2
+        vlm: true
+      steps_taken: 2
+      trial: 2
+    - error: null
+      result: success
+      steps:
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 51°, speed 0.0m/s, armed'
+        step: 1
+        vlm: true
+      - cmd: null
+        note: SUCCESS
+        step: 2
+        vlm: true
+      steps_taken: 2
+      trial: 3
+    trials: 3
+    vlm: Gemma3
+    vlm_model: gemma3:4b
+  Llama3.2 × LLaVA1.6:
+    avg_steps: 6.3
+    llm: Llama3.2
+    llm_model: llama3.2:3b
+    success_rate_pct: 66.7
+    successes: 2
+    trial_details:
+    - error: null
+      result: timeout
+      steps:
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 44°, speed 0.0m/s, armed'
+        step: 1
+        vlm: true
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 44°, speed 0.0m/s, armed'
+        step: 2
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 8°, speed 0.0m/s, armed'
+        step: 3
+        vlm: false
+      - cmd: Turn(30.0)
+        state: 'Drone state: altitude 3.0m, heading 88°, speed 0.0m/s, armed'
+        step: 4
+        vlm: false
+      - cmd: Turn(60.0)
+        state: 'Drone state: altitude 3.0m, heading 106°, speed 0.0m/s, armed'
+        step: 5
+        vlm: false
+      - cmd: Turn(120.0)
+        state: 'Drone state: altitude 3.0m, heading 175°, speed 0.0m/s, armed'
+        step: 6
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 292°, speed 0.0m/s, armed'
+        step: 7
+        vlm: false
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 348°, speed 0.0m/s, armed'
+        step: 8
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 354°, speed 0.0m/s, armed'
+        step: 9
+        vlm: false
+      - cmd: Turn(30.0)
+        state: 'Drone state: altitude 3.0m, heading 23°, speed 0.0m/s, armed'
+        step: 10
+        vlm: false
+      - cmd: Turn(60.0)
+        state: 'Drone state: altitude 3.0m, heading 92°, speed 0.0m/s, armed'
+        step: 11
+        vlm: false
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 150°, speed 0.0m/s, armed'
+        step: 12
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 106°, speed 0.0m/s, armed'
+        step: 13
+        vlm: false
+      - cmd: Turn(120.0)
+        state: 'Drone state: altitude 3.0m, heading 194°, speed 0.0m/s, armed'
+        step: 14
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 312°, speed 0.0m/s, armed'
+        step: 15
+        vlm: false
+      steps_taken: 15
+      trial: 1
+    - error: null
+      result: success
+      steps:
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 39°, speed 0.0m/s, armed'
+        step: 1
+        vlm: true
+      - cmd: null
+        note: SUCCESS
+        step: 2
+        vlm: true
+      steps_taken: 2
+      trial: 2
+    - error: null
+      result: success
+      steps:
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 40°, speed 0.0m/s, armed'
+        step: 1
+        vlm: true
+      - cmd: null
+        note: SUCCESS
+        step: 2
+        vlm: true
+      steps_taken: 2
+      trial: 3
+    trials: 3
+    vlm: LLaVA1.6
+    vlm_model: llava:7b
+  Llama3.2 × Llama3.2-Vision:
+    avg_steps: 8.3
+    llm: Llama3.2
+    llm_model: llama3.2:3b
+    success_rate_pct: 66.7
+    successes: 2
+    trial_details:
+    - error: null
+      result: timeout
+      steps:
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 50°, speed 0.0m/s, armed'
+        step: 1
+        vlm: true
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 50°, speed 0.0m/s, armed'
+        step: 2
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 322°, speed 0.0m/s, armed'
+        step: 3
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 6°, speed 0.0m/s, armed'
+        step: 4
+        vlm: false
+      - cmd: Turn(30.0)
+        state: 'Drone state: altitude 3.0m, heading 94°, speed 0.0m/s, armed'
+        step: 5
+        vlm: false
+      - cmd: Turn(60.0)
+        state: 'Drone state: altitude 3.0m, heading 124°, speed 0.0m/s, armed'
+        step: 6
+        vlm: false
+      - cmd: Turn(120.0)
+        state: 'Drone state: altitude 3.0m, heading 124°, speed 0.0m/s, armed'
+        step: 7
+        vlm: false
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 301°, speed 0.0m/s, armed'
+        step: 8
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 256°, speed 0.0m/s, armed'
+        step: 9
+        vlm: false
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 256°, speed 0.0m/s, armed'
+        step: 10
+        vlm: false
+      - cmd: Turn(30.0)
+        state: 'Drone state: altitude 3.0m, heading 345°, speed 0.0m/s, armed'
+        step: 11
+        vlm: false
+      - cmd: Turn(60.0)
+        state: 'Drone state: altitude 3.0m, heading 285°, speed 0.0m/s, armed'
+        step: 12
+        vlm: false
+      - cmd: Turn(120.0)
+        state: 'Drone state: altitude 3.0m, heading 343°, speed 0.0m/s, armed'
+        step: 13
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 100°, speed 0.0m/s, armed'
+        step: 14
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 143°, speed 0.0m/s, armed'
+        step: 15
+        vlm: false
+      steps_taken: 15
+      trial: 1
+    - error: null
+      result: success
+      steps:
+      - cmd: Turn(-90.0)
+        state: 'Drone state: altitude 3.0m, heading 231°, speed 0.0m/s, armed'
+        step: 1
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 142°, speed 0.0m/s, armed'
+        step: 2
+        vlm: false
+      - cmd: Turn(22.5)
+        state: 'Drone state: altitude 3.0m, heading 142°, speed 0.0m/s, armed'
+        step: 3
+        vlm: false
+      - cmd: Turn(67.5)
+        state: 'Drone state: altitude 3.0m, heading 208°, speed 0.0m/s, armed'
+        step: 4
+        vlm: false
+      - cmd: Turn(67.5)
+        state: 'Drone state: altitude 3.0m, heading 208°, speed 0.0m/s, armed'
+        step: 5
+        vlm: false
+      - cmd: Turn(67.5)
+        state: 'Drone state: altitude 3.0m, heading 338°, speed 0.0m/s, armed'
+        step: 6
+        vlm: false
+      - cmd: Move(-10.0)
+        state: 'Drone state: altitude 3.0m, heading 338°, speed 0.0m/s, armed'
+        step: 7
+        vlm: true
+      - cmd: null
+        note: SUCCESS
+        step: 8
+        vlm: true
+      steps_taken: 8
+      trial: 2
+    - error: null
+      result: success
+      steps:
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 44°, speed 0.0m/s, armed'
+        step: 1
+        vlm: true
+      - cmd: null
+        note: SUCCESS
+        step: 2
+        vlm: true
+      steps_taken: 2
+      trial: 3
+    trials: 3
+    vlm: Llama3.2-Vision
+    vlm_model: llama3.2-vision:11b
+  Qwen2.5 × Gemma3:
+    avg_steps: 6.3
+    llm: Qwen2.5
+    llm_model: qwen2.5:3b
+    success_rate_pct: 66.7
+    successes: 2
+    trial_details:
+    - error: null
+      result: timeout
+      steps:
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 233°, speed 0.0m/s, armed'
+        step: 1
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 233°, speed 0.0m/s, armed'
+        step: 2
+        vlm: false
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 4°, speed 0.0m/s, armed'
+        step: 3
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 330°, speed 0.0m/s, armed'
+        step: 4
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 4°, speed 0.0m/s, armed'
+        step: 5
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 48°, speed 0.0m/s, armed'
+        step: 6
+        vlm: false
+      - cmd: Move(-3.0)
+        state: 'Drone state: altitude 3.0m, heading 92°, speed 0.0m/s, armed'
+        step: 7
+        vlm: false
+      - cmd: Move(2.0)
+        state: 'Drone state: altitude 3.0m, heading 92°, speed 0.0m/s, armed'
+        step: 8
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 92°, speed 0.0m/s, armed'
+        step: 9
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 157°, speed 0.0m/s, armed'
+        step: 10
+        vlm: false
+      - cmd: Turn(180.0)
+        state: 'Drone state: altitude 3.0m, heading 230°, speed 0.0m/s, armed'
+        step: 11
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 25°, speed 0.0m/s, armed'
+        step: 12
+        vlm: false
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 112°, speed 0.0m/s, armed'
+        step: 13
+        vlm: false
+      - cmd: Move(-5.0)
+        state: 'Drone state: altitude 3.0m, heading 68°, speed 0.0m/s, armed'
+        step: 14
+        vlm: false
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 69°, speed 0.0m/s, armed'
+        step: 15
+        vlm: false
+      steps_taken: 15
+      trial: 1
+    - error: null
+      result: success
+      steps:
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 68°, speed 0.0m/s, armed'
+        step: 1
+        vlm: true
+      - cmd: null
+        note: SUCCESS
+        step: 2
+        vlm: true
+      steps_taken: 2
+      trial: 2
+    - error: null
+      result: success
+      steps:
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 69°, speed 0.0m/s, armed'
+        step: 1
+        vlm: true
+      - cmd: null
+        note: SUCCESS
+        step: 2
+        vlm: true
+      steps_taken: 2
+      trial: 3
+    trials: 3
+    vlm: Gemma3
+    vlm_model: gemma3:4b
+  Qwen2.5 × LLaVA1.6:
+    avg_steps: 2.0
+    llm: Qwen2.5
+    llm_model: qwen2.5:3b
+    success_rate_pct: 100.0
+    successes: 3
+    trial_details:
+    - error: null
+      result: success
+      steps:
+      - cmd: Move(2.0)
+        state: 'Drone state: altitude 3.0m, heading 50°, speed 0.0m/s, armed'
+        step: 1
+        vlm: true
+      - cmd: null
+        note: SUCCESS
+        step: 2
+        vlm: true
+      steps_taken: 2
+      trial: 1
+    - error: null
+      result: success
+      steps:
+      - cmd: Move(2.0)
+        state: 'Drone state: altitude 3.0m, heading 50°, speed 0.0m/s, armed'
+        step: 1
+        vlm: true
+      - cmd: null
+        note: SUCCESS
+        step: 2
+        vlm: true
+      steps_taken: 2
+      trial: 2
+    - error: null
+      result: success
+      steps:
+      - cmd: Move(2.0)
+        state: 'Drone state: altitude 3.0m, heading 50°, speed 0.0m/s, armed'
+        step: 1
+        vlm: true
+      - cmd: null
+        note: SUCCESS
+        step: 2
+        vlm: true
+      steps_taken: 2
+      trial: 3
+    trials: 3
+    vlm: LLaVA1.6
+    vlm_model: llava:7b
+  Qwen2.5 × Llama3.2-Vision:
+    avg_steps: 10.0
+    llm: Qwen2.5
+    llm_model: qwen2.5:3b
+    success_rate_pct: 66.7
+    successes: 2
+    trial_details:
+    - error: null
+      result: timeout
+      steps:
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 68°, speed 0.0m/s, armed'
+        step: 1
+        vlm: true
+      - cmd: Turn(-20.0)
+        state: 'Drone state: altitude 3.0m, heading 68°, speed 0.0m/s, armed'
+        step: 2
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 68°, speed 0.0m/s, armed'
+        step: 3
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 48°, speed 0.0m/s, armed'
+        step: 4
+        vlm: false
+      - cmd: Turn(60.0)
+        state: 'Drone state: altitude 3.0m, heading 180°, speed 0.0m/s, armed'
+        step: 5
+        vlm: false
+      - cmd: Move(-10.0)
+        state: 'Drone state: altitude 3.0m, heading 239°, speed 0.0m/s, armed'
+        step: 6
+        vlm: false
+      - cmd: Turn(65.0)
+        state: 'Drone state: altitude 3.0m, heading 239°, speed 0.0m/s, armed'
+        step: 7
+        vlm: false
+      - cmd: Turn(60.0)
+        state: 'Drone state: altitude 3.0m, heading 302°, speed 0.0m/s, armed'
+        step: 8
+        vlm: false
+      - cmd: Move(5.0)
+        state: 'Drone state: altitude 3.0m, heading 0°, speed 0.0m/s, armed'
+        step: 9
+        vlm: false
+      - cmd: Turn(10.0)
+        state: 'Drone state: altitude 3.0m, heading 0°, speed 0.0m/s, armed'
+        step: 10
+        vlm: false
+      - cmd: Turn(15.0)
+        state: 'Drone state: altitude 3.0m, heading 10°, speed 0.0m/s, armed'
+        step: 11
+        vlm: false
+      - cmd: Turn(-10.0)
+        state: 'Drone state: altitude 3.0m, heading 25°, speed 0.0m/s, armed'
+        step: 12
+        vlm: false
+      - cmd: Turn(30.0)
+        state: 'Drone state: altitude 3.0m, heading 15°, speed 0.0m/s, armed'
+        step: 13
+        vlm: false
+      - cmd: Turn(60.0)
+        state: 'Drone state: altitude 3.0m, heading 44°, speed 0.0m/s, armed'
+        step: 14
+        vlm: false
+      - cmd: Move(-5.0)
+        state: 'Drone state: altitude 3.0m, heading 103°, speed 0.0m/s, armed'
+        step: 15
+        vlm: false
+      steps_taken: 15
+      trial: 1
+    - error: null
+      result: success
+      steps:
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 103°, speed 0.0m/s, armed'
+        step: 1
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 103°, speed 0.0m/s, armed'
+        step: 2
+        vlm: false
+      - cmd: Turn(-45.0)
+        state: 'Drone state: altitude 3.0m, heading 234°, speed 0.0m/s, armed'
+        step: 3
+        vlm: false
+      - cmd: Move(-2.0)
+        state: 'Drone state: altitude 3.0m, heading 191°, speed 0.0m/s, armed'
+        step: 4
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 191°, speed 0.0m/s, armed'
+        step: 5
+        vlm: false
+      - cmd: Move(2.0)
+        state: 'Drone state: altitude 3.0m, heading 234°, speed 0.0m/s, armed'
+        step: 6
+        vlm: false
+      - cmd: Move(1.0)
+        state: 'Drone state: altitude 3.0m, heading 234°, speed 0.0m/s, armed'
+        step: 7
+        vlm: false
+      - cmd: Turn(90.0)
+        state: 'Drone state: altitude 3.0m, heading 234°, speed 0.0m/s, armed'
+        step: 8
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 323°, speed 0.0m/s, armed'
+        step: 9
+        vlm: false
+      - cmd: Move(-1.0)
+        state: 'Drone state: altitude 3.0m, heading 6°, speed 0.0m/s, armed'
+        step: 10
+        vlm: false
+      - cmd: Turn(45.0)
+        state: 'Drone state: altitude 3.0m, heading 6°, speed 0.0m/s, armed'
+        step: 11
+        vlm: false
+      - cmd: Move(2.0)
+        state: 'Drone state: altitude 3.0m, heading 50°, speed 0.0m/s, armed'
+        step: 12
+        vlm: true
+      - cmd: null
+        note: SUCCESS
+        step: 13
+        vlm: true
+      steps_taken: 13
+      trial: 2
+    - error: null
+      result: success
+      steps:
+      - cmd: Move(2.0)
+        state: 'Drone state: altitude 3.0m, heading 50°, speed 0.0m/s, armed'
+        step: 1
+        vlm: true
+      - cmd: null
+        note: SUCCESS
+        step: 2
+        vlm: true
+      steps_taken: 2
+      trial: 3
+    trials: 3
+    vlm: Llama3.2-Vision
+    vlm_model: llama3.2-vision:11b
+timestamp: '20260225_182014'

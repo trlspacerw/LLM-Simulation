@@ -1,0 +1,83 @@
+config:
+  llm_trials: 50
+  mission_task: find the walking person
+  mission_trials: 5
+  output_dir: ~/.drone_benchmark
+  vlm_trials: 30
+results:
+  Gemma3:
+    avg_latency_sec: 0.908
+    errors: 0
+    invalid: 0
+    label: Gemma3
+    model: gemma3:4b
+    samples:
+    - response: 'No'
+      target: a walking person
+      valid: true
+    - response: 'No'
+      target: a red car
+      valid: true
+    - response: 'Yes'
+      target: a military truck
+      valid: true
+    - response: 'Yes'
+      target: a hatchback vehicle
+      valid: true
+    - response: 'Yes'
+      target: a tree
+      valid: true
+    trials: 30
+    valid: 30
+    validity_pct: 100.0
+  LLaVA1.6:
+    avg_latency_sec: 2.553
+    errors: 0
+    invalid: 0
+    label: LLaVA1.6
+    model: llava:7b
+    samples:
+    - response: 'No'
+      target: a walking person
+      valid: true
+    - response: 'No'
+      target: a red car
+      valid: true
+    - response: 'Yes'
+      target: a military truck
+      valid: true
+    - response: 'No'
+      target: a hatchback vehicle
+      valid: true
+    - response: 'Yes'
+      target: a tree
+      valid: true
+    trials: 30
+    valid: 30
+    validity_pct: 100.0
+  Llama3.2-Vision:
+    avg_latency_sec: 2.645
+    errors: 0
+    invalid: 0
+    label: Llama3.2-Vision
+    model: llama3.2-vision:11b
+    samples:
+    - response: No.
+      target: a walking person
+      valid: true
+    - response: No.
+      target: a red car
+      valid: true
+    - response: Yes.
+      target: a military truck
+      valid: true
+    - response: No.
+      target: a hatchback vehicle
+      valid: true
+    - response: Yes.
+      target: a tree
+      valid: true
+    trials: 30
+    valid: 30
+    validity_pct: 100.0
+timestamp: '20260225_115519'
