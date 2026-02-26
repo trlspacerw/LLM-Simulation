@@ -1,0 +1,868 @@
+<?xml version="1.0" ?>
+<!--
+  vtol model.sdf — generated from vtol.urdf via gz sdf -p
+  Spawn pose: x=0 y=0 z=0.3223 roll=1.5708 (belly-down, ground level)
+  Propellers start static; mavlink_controller.py spins them up on ARM.
+-->
+<sdf version="1.11">
+<model name='vtol'>
+    <link name='base_link'>
+      <inertial>
+        <pose>2.4691358024688639e-05 0.1169185185185185 -0.036632098765432088 0 0 0</pose>
+        <mass>8.0999999999999996</mass>
+        <inertia>
+          <ixx>2.7324871418765428</ixx>
+          <ixy>-0.0024063362962963228</ixy>
+          <ixz>0.010952393580246911</ixz>
+          <iyy>4.1716076587160487</iyy>
+          <iyz>0.075318485185185191</iyz>
+          <izz>2.68398566528395</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.10000000000000001 0.10000000000000001 0.10000000000000001</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='base_link_fixed_joint_lump__motor_1_link_collision_1'>
+        <pose>-0.60999999999999999 0.2351 0.51780000000000004 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.10000000000000001 0.10000000000000001 0.10000000000000001</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='base_link_fixed_joint_lump__motor_2_link_collision_2'>
+        <pose>0.60999999999999999 0.2351 0.50780000000000003 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.10000000000000001 0.10000000000000001 0.10000000000000001</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='base_link_fixed_joint_lump__motor_3_link_collision_3'>
+        <pose>0.60999999999999999 0.2351 -0.49220000000000003 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.10000000000000001 0.10000000000000001 0.10000000000000001</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='base_link_fixed_joint_lump__motor_4_link_collision_4'>
+        <pose>-0.60999999999999999 0.2351 -0.48220000000000002 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.10000000000000001 0.10000000000000001 0.10000000000000001</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='base_link_fixed_joint_lump__tail_left_link_collision_5'>
+        <pose>-0.19420000000000001 0.35630000000000001 -0.84370000000000001 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.10000000000000001 0.10000000000000001 0.10000000000000001</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='base_link_fixed_joint_lump__tail_right_link_collision_6'>
+        <pose>0.19420000000000001 0.35630000000000001 -0.84370000000000001 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.10000000000000001 0.10000000000000001 0.10000000000000001</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='base_link_fixed_joint_lump__wing_left_collision_7'>
+        <pose>-0.84899999999999998 0.25979999999999998 0.017000000000000001 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.10000000000000001 0.10000000000000001 0.10000000000000001</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='base_link_fixed_joint_lump__wing_right_collision_8'>
+        <pose>0.84919999999999995 0.2626 0.0083999999999999995 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.10000000000000001 0.10000000000000001 0.10000000000000001</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose>-1.6242000000000001 -0.32229999999999998 -1.0217000000000001 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://vtol/meshes/fuselage.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+      <visual name='base_link_fixed_joint_lump__motor_1_link_visual_1'>
+        <pose>-1.6242000000000001 -0.32229999999999998 -1.0217000000000001 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://vtol/meshes/motor_1_body.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.187500015 0.187500015 0.187500015 1</diffuse>
+          <ambient>0.187500015 0.187500015 0.187500015 1</ambient>
+        </material>
+      </visual>
+      <visual name='base_link_fixed_joint_lump__motor_2_link_visual_2'>
+        <pose>-1.6242000000000001 -0.32229999999999998 -1.0217000000000001 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://vtol/meshes/motor_2_body.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.187500015 0.187500015 0.187500015 1</diffuse>
+          <ambient>0.187500015 0.187500015 0.187500015 1</ambient>
+        </material>
+      </visual>
+      <visual name='base_link_fixed_joint_lump__motor_3_link_visual_3'>
+        <pose>-1.6242000000000001 -0.32229999999999998 -1.0217000000000001 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://vtol/meshes/motor_3_body.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.187500015 0.187500015 0.187500015 1</diffuse>
+          <ambient>0.187500015 0.187500015 0.187500015 1</ambient>
+        </material>
+      </visual>
+      <visual name='base_link_fixed_joint_lump__motor_4_link_visual_4'>
+        <pose>-1.6242000000000001 -0.32229999999999998 -1.0217000000000001 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://vtol/meshes/motor_4_body.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.187500015 0.187500015 0.187500015 1</diffuse>
+          <ambient>0.187500015 0.187500015 0.187500015 1</ambient>
+        </material>
+      </visual>
+      <visual name='base_link_fixed_joint_lump__tail_left_link_visual_5'>
+        <pose>-1.6242000000000001 -0.32229999999999998 -1.0217000000000001 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://vtol/meshes/tail_left.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.4375 0.4375 0.5 1</diffuse>
+          <ambient>0.4375 0.4375 0.5 1</ambient>
+        </material>
+      </visual>
+      <visual name='base_link_fixed_joint_lump__tail_right_link_visual_6'>
+        <pose>-1.6242000000000001 -0.32229999999999998 -1.0217000000000001 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://vtol/meshes/tail_right.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.4375 0.4375 0.5 1</diffuse>
+          <ambient>0.4375 0.4375 0.5 1</ambient>
+        </material>
+      </visual>
+      <visual name='base_link_fixed_joint_lump__wing_left_visual_7'>
+        <pose>-1.6242000000000001 -0.32229999999999998 -1.0217000000000001 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://vtol/meshes/wing_left.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.37500003 0.37500003 0.4375 1</diffuse>
+          <ambient>0.37500003 0.37500003 0.4375 1</ambient>
+        </material>
+      </visual>
+      <visual name='base_link_fixed_joint_lump__wing_right_visual_8'>
+        <pose>-1.6242000000000001 -0.32229999999999998 -1.0217000000000001 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://vtol/meshes/wing_right.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.37500003 0.37500003 0.4375 1</diffuse>
+          <ambient>0.37500003 0.37500003 0.4375 1</ambient>
+        </material>
+      </visual>
+      <gravity>false</gravity>
+      <kinematic>true</kinematic>
+      <gravity>false</gravity>
+      <kinematic>true</kinematic>
+      <gravity>false</gravity>
+      <kinematic>true</kinematic>
+      <gravity>false</gravity>
+      <kinematic>true</kinematic>
+      <gravity>false</gravity>
+      <kinematic>true</kinematic>
+      <gravity>false</gravity>
+      <kinematic>true</kinematic>
+      <gravity>false</gravity>
+      <kinematic>true</kinematic>
+      <gravity>false</gravity>
+      <kinematic>true</kinematic>
+      <gravity>false</gravity>
+      <kinematic>true</kinematic>
+    </link>
+    <joint name='aileron_link_joint' type='revolute'>
+      <pose relative_to='base_link'>0 0.24379999999999999 -0.1118 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>aileron_link</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-0.44</lower>
+          <upper>0.44</upper>
+          <effort>10</effort>
+          <velocity>10</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='aileron_link'>
+      <pose relative_to='aileron_link_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.29999999999999999</mass>
+        <inertia>
+          <ixx>0.00015899999999999999</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.210261</iyy>
+          <iyz>0</iyz>
+          <izz>0.210398</izz>
+        </inertia>
+      </inertial>
+      <collision name='aileron_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.10000000000000001 0.10000000000000001 0.10000000000000001</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='aileron_link_visual'>
+        <pose>-1.6242000000000001 -0.56610000000000005 -0.90990000000000004 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://vtol/meshes/aileron.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.5 0.5 0.625 1</diffuse>
+          <ambient>0.5 0.5 0.625 1</ambient>
+        </material>
+      </visual>
+      <gravity>false</gravity>
+      <kinematic>true</kinematic>
+    </link>
+    <joint name='prop_1_joint' type='revolute'>
+      <pose relative_to='base_link'>-0.60999999999999999 0.24129999999999999 0.51780000000000004 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>prop_1_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='prop_1_link'>
+      <pose relative_to='prop_1_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.10000000000000001</mass>
+        <inertia>
+          <ixx>0.0019599999999999999</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0019599999999999999</iyy>
+          <iyz>0</iyz>
+          <izz>0.0039199999999999999</izz>
+        </inertia>
+      </inertial>
+      <collision name='prop_1_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.10000000000000001 0.10000000000000001 0.10000000000000001</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='prop_1_link_visual'>
+        <pose>-1.0142 -0.56359999999999999 -1.5395000000000001 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://vtol/meshes/prop_1.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.25 0.25 0.25 1</diffuse>
+          <ambient>0.25 0.25 0.25 1</ambient>
+        </material>
+      </visual>
+      <gravity>false</gravity>
+    </link>
+    <joint name='prop_2_joint' type='revolute'>
+      <pose relative_to='base_link'>0.60999999999999999 0.24129999999999999 0.50780000000000003 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>prop_2_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='prop_2_link'>
+      <pose relative_to='prop_2_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.10000000000000001</mass>
+        <inertia>
+          <ixx>0.0019599999999999999</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0019599999999999999</iyy>
+          <iyz>0</iyz>
+          <izz>0.0039199999999999999</izz>
+        </inertia>
+      </inertial>
+      <collision name='prop_2_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.10000000000000001 0.10000000000000001 0.10000000000000001</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='prop_2_link_visual'>
+        <pose>-2.2342 -0.56359999999999999 -1.5295000000000001 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://vtol/meshes/prop_2.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.25 0.25 0.25 1</diffuse>
+          <ambient>0.25 0.25 0.25 1</ambient>
+        </material>
+      </visual>
+      <gravity>false</gravity>
+    </link>
+    <joint name='prop_3_joint' type='revolute'>
+      <pose relative_to='base_link'>0.60999999999999999 0.24129999999999999 -0.49220000000000003 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>prop_3_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='prop_3_link'>
+      <pose relative_to='prop_3_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.10000000000000001</mass>
+        <inertia>
+          <ixx>0.0019599999999999999</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0019599999999999999</iyy>
+          <iyz>0</iyz>
+          <izz>0.0039199999999999999</izz>
+        </inertia>
+      </inertial>
+      <collision name='prop_3_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.10000000000000001 0.10000000000000001 0.10000000000000001</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='prop_3_link_visual'>
+        <pose>-2.2342 -0.56359999999999999 -0.52949999999999997 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://vtol/meshes/prop_3.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.25 0.25 0.25 1</diffuse>
+          <ambient>0.25 0.25 0.25 1</ambient>
+        </material>
+      </visual>
+      <gravity>false</gravity>
+    </link>
+    <joint name='prop_4_joint' type='revolute'>
+      <pose relative_to='base_link'>-0.60999999999999999 0.24129999999999999 -0.48220000000000002 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>prop_4_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='prop_4_link'>
+      <pose relative_to='prop_4_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.10000000000000001</mass>
+        <inertia>
+          <ixx>0.0019599999999999999</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0019599999999999999</iyy>
+          <iyz>0</iyz>
+          <izz>0.0039199999999999999</izz>
+        </inertia>
+      </inertial>
+      <collision name='prop_4_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.10000000000000001 0.10000000000000001 0.10000000000000001</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='prop_4_link_visual'>
+        <pose>-1.0142 -0.56359999999999999 -0.53949999999999998 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://vtol/meshes/prop_4.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.25 0.25 0.25 1</diffuse>
+          <ambient>0.25 0.25 0.25 1</ambient>
+        </material>
+      </visual>
+      <gravity>false</gravity>
+    </link>
+    <joint name='pusher_joint' type='revolute'>
+      <pose relative_to='base_link'>0 0.16239999999999999 -0.95979999999999999 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>pusher_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='pusher_link'>
+      <pose relative_to='pusher_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.5</mass>
+        <inertia>
+          <ixx>0.0030000000000000001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0030000000000000001</iyy>
+          <iyz>0</iyz>
+          <izz>0.0050000000000000001</izz>
+        </inertia>
+      </inertial>
+      <collision name='pusher_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.10000000000000001 0.10000000000000001 0.10000000000000001</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='pusher_link_visual'>
+        <pose>-1.6242000000000001 -0.48470000000000002 -0.061899999999999997 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://vtol/meshes/pusher.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.187500015 0.187500015 0.187500015 1</diffuse>
+          <ambient>0.187500015 0.187500015 0.187500015 1</ambient>
+        </material>
+      </visual>
+      <gravity>false</gravity>
+    </link>
+    <joint name='ruddervator_left_link_joint' type='revolute'>
+      <pose relative_to='base_link'>-0.186 0.3488 -0.91259999999999997 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>ruddervator_left_link</child>
+      <axis>
+        <xyz>0.70699999999999996 0.70699999999999996 0</xyz>
+        <limit>
+          <lower>-0.44</lower>
+          <upper>0.44</upper>
+          <effort>10</effort>
+          <velocity>10</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='ruddervator_left_link'>
+      <pose relative_to='ruddervator_left_link_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.20000000000000001</mass>
+        <inertia>
+          <ixx>0.002</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00080000000000000004</iyy>
+          <iyz>0</iyz>
+          <izz>0.002</izz>
+        </inertia>
+      </inertial>
+      <collision name='ruddervator_left_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.10000000000000001 0.10000000000000001 0.10000000000000001</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='ruddervator_left_link_visual'>
+        <pose>-1.4381999999999999 -0.67110000000000003 -0.1091 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://vtol/meshes/ruddervator_left.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.5625 0.5625 0.6875 1</diffuse>
+          <ambient>0.5625 0.5625 0.6875 1</ambient>
+        </material>
+      </visual>
+      <gravity>false</gravity>
+      <kinematic>true</kinematic>
+    </link>
+    <joint name='ruddervator_right_link_joint' type='revolute'>
+      <pose relative_to='base_link'>0.186 0.3488 -0.91259999999999997 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>ruddervator_right_link</child>
+      <axis>
+        <xyz>-0.70699999999999996 0.70699999999999996 0</xyz>
+        <limit>
+          <lower>-0.44</lower>
+          <upper>0.44</upper>
+          <effort>10</effort>
+          <velocity>10</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='ruddervator_right_link'>
+      <pose relative_to='ruddervator_right_link_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.20000000000000001</mass>
+        <inertia>
+          <ixx>0.002</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00080000000000000004</iyy>
+          <iyz>0</iyz>
+          <izz>0.002</izz>
+        </inertia>
+      </inertial>
+      <collision name='ruddervator_right_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.10000000000000001 0.10000000000000001 0.10000000000000001</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='ruddervator_right_link_visual'>
+        <pose>-1.8102 -0.67110000000000003 -0.1091 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://vtol/meshes/ruddervator_right.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.5625 0.5625 0.6875 1</diffuse>
+          <ambient>0.5625 0.5625 0.6875 1</ambient>
+        </material>
+      </visual>
+      <gravity>false</gravity>
+      <kinematic>true</kinematic>
+    </link>
+    <plugin name='gz::sim::systems::JointController' filename='gz-sim-joint-controller-system'>
+      <joint_name>prop_1_joint</joint_name>
+      <initial_velocity>0.0</initial_velocity>
+    </plugin>
+    <plugin name='gz::sim::systems::JointController' filename='gz-sim-joint-controller-system'>
+      <joint_name>prop_2_joint</joint_name>
+      <initial_velocity>0.0</initial_velocity>
+    </plugin>
+    <plugin name='gz::sim::systems::JointController' filename='gz-sim-joint-controller-system'>
+      <joint_name>prop_3_joint</joint_name>
+      <initial_velocity>0.0</initial_velocity>
+    </plugin>
+    <plugin name='gz::sim::systems::JointController' filename='gz-sim-joint-controller-system'>
+      <joint_name>prop_4_joint</joint_name>
+      <initial_velocity>0.0</initial_velocity>
+    </plugin>
+    <plugin name='gz::sim::systems::JointController' filename='gz-sim-joint-controller-system'>
+      <joint_name>pusher_joint</joint_name>
+      <initial_velocity>0.0</initial_velocity>
+    </plugin>
+    <frame name='motor_1_joint' attached_to='base_link'>
+      <pose>-0.60999999999999999 0.2351 0.51780000000000004 0 0 0</pose>
+    </frame>
+    <frame name='motor_1_link' attached_to='motor_1_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='motor_2_joint' attached_to='base_link'>
+      <pose>0.60999999999999999 0.2351 0.50780000000000003 0 0 0</pose>
+    </frame>
+    <frame name='motor_2_link' attached_to='motor_2_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='motor_3_joint' attached_to='base_link'>
+      <pose>0.60999999999999999 0.2351 -0.49220000000000003 0 0 0</pose>
+    </frame>
+    <frame name='motor_3_link' attached_to='motor_3_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='motor_4_joint' attached_to='base_link'>
+      <pose>-0.60999999999999999 0.2351 -0.48220000000000002 0 0 0</pose>
+    </frame>
+    <frame name='motor_4_link' attached_to='motor_4_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='tail_left_link_joint' attached_to='base_link'>
+      <pose>-0.19420000000000001 0.35630000000000001 -0.84370000000000001 0 0 0</pose>
+    </frame>
+    <frame name='tail_left_link' attached_to='tail_left_link_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='tail_right_link_joint' attached_to='base_link'>
+      <pose>0.19420000000000001 0.35630000000000001 -0.84370000000000001 0 0 0</pose>
+    </frame>
+    <frame name='tail_right_link' attached_to='tail_right_link_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='wing_left_joint' attached_to='base_link'>
+      <pose>-0.84899999999999998 0.25979999999999998 0.017000000000000001 0 0 0</pose>
+    </frame>
+    <frame name='wing_left' attached_to='wing_left_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='wing_right_joint' attached_to='base_link'>
+      <pose>0.84919999999999995 0.2626 0.0083999999999999995 0 0 0</pose>
+    </frame>
+    <frame name='wing_right' attached_to='wing_right_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+  </model>
+</sdf>
