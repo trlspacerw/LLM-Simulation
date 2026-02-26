@@ -34,7 +34,7 @@
       <geometry>
         <mesh filename="package://vtol_description/meshes/fuselage.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="fuselage_mat"><color rgba="0.8 0.8 0.85 1.0"/></material>
+      <material name="fuselage_mat"><color rgba="0.0 0.0 0.0 1.0"/></material>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -56,7 +56,7 @@
       <geometry>
         <mesh filename="package://vtol_description/meshes/wing_left.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="wing_left_mat"><color rgba="0.3 0.3 0.35 1.0"/></material>
+      <material name="wing_left_mat"><color rgba="1.0 1.0 0.0 1.0"/></material>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -83,7 +83,7 @@
       <geometry>
         <mesh filename="package://vtol_description/meshes/wing_right.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="wing_right_mat"><color rgba="0.3 0.3 0.35 1.0"/></material>
+      <material name="wing_right_mat"><color rgba="1.0 1.0 0.0 1.0"/></material>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>

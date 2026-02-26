@@ -172,8 +172,8 @@
           </mesh>
         </geometry>
         <material>
-          <diffuse>1 1 1 1</diffuse>
-          <ambient>1 1 1 1</ambient>
+          <diffuse>0 0 0 1</diffuse>
+          <ambient>0 0 0 1</ambient>
         </material>
       </visual>
       <visual name='base_link_fixed_joint_lump__motor_1_link_visual_1'>
@@ -263,8 +263,8 @@
           </mesh>
         </geometry>
         <material>
-          <diffuse>0.37500003 0.37500003 0.4375 1</diffuse>
-          <ambient>0.37500003 0.37500003 0.4375 1</ambient>
+          <diffuse>1 1 0 1</diffuse>
+          <ambient>1 1 0 1</ambient>
         </material>
       </visual>
       <visual name='base_link_fixed_joint_lump__wing_right_visual_8'>
@@ -276,8 +276,8 @@
           </mesh>
         </geometry>
         <material>
-          <diffuse>0.37500003 0.37500003 0.4375 1</diffuse>
-          <ambient>0.37500003 0.37500003 0.4375 1</ambient>
+          <diffuse>1 1 0 1</diffuse>
+          <ambient>1 1 0 1</ambient>
         </material>
       </visual>
       <gravity>false</gravity>
