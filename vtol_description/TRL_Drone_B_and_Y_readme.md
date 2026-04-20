@@ -15,8 +15,10 @@ configurable altitude.
 4. [Launch in Gazebo](#4-launch-in-gazebo)
 5. [Run the Automatic Mission](#5-run-the-automatic-mission)
 6. [Mission Options](#6-mission-options)
-7. [Anti-Flicker Design](#7-anti-flicker-design)
-8. [URDF / SDF Colour Reference](#8-urdf--sdf-colour-reference)
+7. [Radio Controller (Manual Flight)](#7-radio-controller-manual-flight)
+8. [Flight Modes & Transition](#8-flight-modes--transition)
+9. [Anti-Flicker Design](#9-anti-flicker-design)
+10. [URDF / SDF Colour Reference](#10-urdf--sdf-colour-reference)
 
 ---
 
@@ -30,7 +32,7 @@ configurable altitude.
 | Control surfaces | Aileron (full-span), 2 × ruddervators (V-tail) |
 | Fuselage colour | **Black** `rgba(0, 0, 0, 1)` |
 | Wing colour | **Yellow** `rgba(1, 1, 0, 1)` (both wings) |
-| Physics | Kinematic (moved via `set_pose`; no gravity) |
+| Physics | 6-DOF rigid body (gravity, drag, wing lift) or kinematic via `set_pose` |
 | Coordinate frame | X = lateral, Y = vertical (up), Z = longitudinal (nose +Z) |
 
 ---
@@ -54,8 +56,10 @@ vtol_description/
 │   ├── vtol_empty.sdf             ← world used by ros2 launch (model spawned separately)
 │   └── vtol_standalone.sdf        ← standalone CLI world (includes model inline)
 ├── scripts/
-│   ├── mission.py                 ← automatic takeoff → hover → land  ← NEW
+│   ├── mission.py                 ← automatic takeoff → hover → land
 │   ├── run_mission.py             ← interactive mission (manual arm/takeoff/land)
+│   ├── radio_controller.py        ← joystick flight (physics + kinematic modes)
+│   ├── vtol_physics.py            ← 6-DOF physics engine (quad/plane/transition)
 │   ├── mavlink_controller.py      ← MAVLink vehicle emulator
 │   └── mavlink_test.py            ← MAVLink GCS test client
 ├── TRL_Drone_B_and_Y_readme.md    ← this file
@@ -178,7 +182,137 @@ python3 mission.py --alt 10 --hover 5 --speed 4.0  # quick dash up and back
 
 ---
 
-## 7. Anti-Flicker Design
+## 7. Radio Controller (Manual Flight)
+
+The radio controller lets you fly the VTOL manually with a joystick (e.g. RadioMaster GX12). It uses a full 6-DOF physics simulation with gravity, aerodynamic drag, wind, and ground contact.
+
+### Quick Start
+
+```bash
+# Terminal 1 — Gazebo
+source ~/ardu_ws/install/setup.bash
+ros2 launch vtol_description gazebo.launch.py
+
+# Terminal 2 — Radio controller
+cd ~/ardu_ws/src/vtol_description/scripts
+python3 radio_controller.py
+```
+
+### CLI Options
+
+| Argument | Default | Description |
+|---|---|---|
+| `--kinematic` | off | Legacy kinematic mode (direct position control) |
+| `--wind M_PER_S` | `0.0` | Constant wind speed |
+| `--wind-dir DEG` | `0` | Wind direction (0 = +X) |
+| `--gust M_PER_S` | `0.0` | Random gust magnitude |
+| `--pusher-button N` | `1` | Button to toggle pusher motor |
+| `--transition-button N` | `2` | Button to trigger QUAD/PLANE transition |
+| `--avoidance` | off | Enable obstacle halt file polling |
+
+### Stick Mapping (Mode 2)
+
+| Stick | QUAD Mode | PLANE Mode |
+|---|---|---|
+| Right X | Roll (differential thrust) | Aileron (roll rate) |
+| Right Y | Pitch (differential thrust) | Elevator (pitch rate) |
+| Left Y | Throttle / collective (0-100%) | Throttle / pusher power |
+| Left X | Yaw (reaction torque) | Rudder (yaw via ruddervators) |
+
+### Buttons
+
+| Button | Function |
+|---|---|
+| 0 | Arm / Disarm toggle |
+| 1 | Toggle pusher motor (QUAD mode only) |
+| 2 | Trigger QUAD↔PLANE transition |
+
+### Examples
+
+```bash
+# Basic flight
+python3 radio_controller.py
+
+# With weather
+python3 radio_controller.py --wind 3.0 --wind-dir 45 --gust 1.5
+
+# Custom transition button
+python3 radio_controller.py --transition-button 3
+
+# Legacy kinematic mode
+python3 radio_controller.py --kinematic
+```
+
+---
+
+## 8. Flight Modes & Transition
+
+The VTOL supports three flight modes with automatic transitions between them.
+
+### Modes
+
+| Mode | Lift Source | Attitude Control | Forward Thrust |
+|---|---|---|---|
+| **QUAD** | 4 lift rotors (differential) | Roll/pitch/yaw via motor mixing | Pusher (optional toggle) |
+| **TRANSITION** | Rotors ramp ↔ wing lift | Blended (rotors + surfaces) | Pusher at full |
+| **PLANE** | Wing lift (airspeed-dependent) | Ailerons + ruddervators | Pusher (throttle stick) |
+
+### How to Transition
+
+1. **Arm** the vehicle (Button 0) and take off in QUAD mode (throttle above 50%).
+2. Gain some altitude (5-10 m recommended).
+3. Press **Button 2** (transition button) to begin QUAD → PLANE transition.
+4. The pusher goes to full thrust; lift rotors hold altitude while the vehicle accelerates.
+5. When airspeed reaches **12 m/s**, mode automatically switches to PLANE.
+6. In PLANE mode, fly with airplane-style controls (bank to turn, throttle for speed).
+7. Press **Button 2** again to begin PLANE → QUAD back-transition.
+8. Lift rotors spool up, pusher reduces, vehicle decelerates.
+9. When airspeed drops below **8 m/s**, mode returns to QUAD.
+
+### Stall Protection
+
+If airspeed drops below **10 m/s** for more than 1 second while in PLANE mode, an automatic back-transition is triggered to prevent a stall crash.
+
+### HUD Display
+
+During flight the terminal shows:
+
+```
+  [ARMED] [QUAD]     Thr= 50%  R= +0.0° P= -1.2° Y= +45.0°  AS=0.3m/s  AGL=8.2m
+  [ARMED] [TRANS→FW]  Thr= 50%  R= +2.1° P= -0.5° Y= +45.0°  AS=9.4m/s  AGL=8.0m  [██████░░░░]
+  [ARMED] [PLANE]    Thr= 70%  R=+15.0° P= -2.0° Y= +90.0°  AS=14.2m/s  AGL=12.1m
+```
+
+The progress bar during transition shows airspeed relative to the threshold.
+
+### Physics Parameters
+
+Key aerodynamic values (configurable in `vtol_physics.py`):
+
+| Parameter | Default | Description |
+|---|---|---|
+| `wing_area` | 0.45 m² | Wing planform area |
+| `wing_cl_alpha` | 5.0 /rad | Lift curve slope |
+| `wing_cl_max` | 1.4 | Max lift coefficient (stall) |
+| `transition_speed` | 12.0 m/s | Airspeed to complete forward transition |
+| `back_transition_speed` | 8.0 m/s | Airspeed to complete back transition |
+| `stall_speed` | 10.0 m/s | Below this in PLANE → auto back-transition |
+| `aileron_authority` | 3.0 rad/s² | Roll rate per unit input |
+| `elevator_authority` | 2.5 rad/s² | Pitch rate per unit input |
+| `rudder_authority` | 1.5 rad/s² | Yaw rate per unit input |
+
+### Running Smoke Tests
+
+```bash
+cd ~/ardu_ws/src/vtol_description/scripts
+python3 vtol_physics.py
+```
+
+This runs 10 automated tests covering gravity, hover, roll, ground contact, yaw, forward/back transition, stall protection, wing lift, and motor mixing.
+
+---
+
+## 9. Anti-Flicker Design
 
 Gazebo flickering in kinematic-body simulations typically has two causes:
 
@@ -219,7 +353,7 @@ close that clearance gap over time.
 
 ---
 
-## 8. URDF / SDF Colour Reference
+## 10. URDF / SDF Colour Reference
 
 Colours are defined in two places (both must match):
 
