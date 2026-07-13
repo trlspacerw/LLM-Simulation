@@ -1,0 +1,26 @@
+# ngrok agent configuration (config version 3).
+#
+# Authtoken — run once:
+#     ngrok config add-authtoken <YOUR_TOKEN>
+# That stores the token in the default agent config
+# (~/.config/ngrok/ngrok.yml), which scripts/start_ngrok.sh merges with this
+# file. Alternatively put NGROK_AUTHTOKEN in the project .env.
+#
+# NOTE: TCP endpoints require a *verified* ngrok account (free is fine, but
+# you must add a payment/identity verification in the ngrok dashboard).
+version: 3
+
+endpoints:
+  # Raw MAVLink for remote QGroundControl / Mission Planner.
+  # ngrok assigns a random address like tcp://5.tcp.ngrok.io:NNNNN.
+  - name: mavlink
+    url: tcp://
+    upstream:
+      url: tcp://localhost:5761  # mavlink-router TCP server (5760 is SITL's own)
+
+  # FastAPI gateway: REST + WebSocket telemetry.
+  # ngrok assigns https://<random>.ngrok-free.app
+  - name: api
+    url: https://
+    upstream:
+      url: http://localhost:8000

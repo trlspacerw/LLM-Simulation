@@ -27,3 +27,13 @@ dist/
 # ROS2 install/log artifacts
 install/
 log/
+
+# drone_development runtime artifacts & secrets
+drone_development/logs/
+drone_development/terrain/
+drone_development/*.tlog
+drone_development/*.tlog.raw
+drone_development/eeprom.bin
+drone_development/mav.parm
+drone_development/drone-platform/logs/
+drone_development/drone-platform/.env

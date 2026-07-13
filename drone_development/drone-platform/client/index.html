@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drone Platform Dashboard</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+  :root { --bg:#11161d; --card:#1a212b; --line:#2a3442; --fg:#dbe4ee;
+          --dim:#8295aa; --accent:#28c1ff; --ok:#3ddc84; --bad:#ff5a5a; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:14px/1.45 system-ui, sans-serif; background:var(--bg);
+         color:var(--fg); height:100vh; display:flex; }
+  aside { width:340px; min-width:300px; overflow-y:auto; padding:12px;
+          display:flex; flex-direction:column; gap:10px; }
+  #map { flex:1; }
+  h1 { font-size:16px; margin:2px 4px 0; }
+  .card { background:var(--card); border:1px solid var(--line);
+          border-radius:8px; padding:10px; }
+  .card h2 { font-size:11px; text-transform:uppercase; letter-spacing:.08em;
+             color:var(--dim); margin:0 0 8px; }
+  label { display:block; font-size:12px; color:var(--dim); margin-bottom:6px; }
+  input { width:100%; padding:6px 8px; margin-top:2px; color:var(--fg);
+          background:#10151c; border:1px solid var(--line); border-radius:5px; }
+  button { padding:7px 10px; border:0; border-radius:5px; cursor:pointer;
+           font-weight:600; color:#06121c; background:var(--accent); }
+  button:hover { filter:brightness(1.12); }
+  button.warn { background:#ffb13d; }
+  button.danger { background:var(--bad); color:#fff; }
+  .btn-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+  .row { display:flex; justify-content:space-between; padding:2px 0;
+         border-bottom:1px dashed var(--line); }
+  .row:last-child { border-bottom:0; }
+  .row .v { font-variant-numeric:tabular-nums; font-weight:600; }
+  .dot { display:inline-block; width:9px; height:9px; border-radius:50%;
+         background:var(--bad); margin-right:6px; }
+  .dot.on { background:var(--ok); }
+  #log { font:11px/1.5 ui-monospace, monospace; max-height:170px;
+         overflow-y:auto; white-space:pre-wrap; word-break:break-word; }
+  #log .err { color:var(--bad); }
+  #toasts { position:fixed; right:14px; top:14px; z-index:2000; display:flex;
+            flex-direction:column; gap:6px; }
+  .toast { background:#222d3a; border:1px solid var(--line); color:var(--fg);
+           border-left:4px solid var(--ok); padding:8px 12px; border-radius:6px;
+           max-width:340px; box-shadow:0 4px 14px rgba(0,0,0,.4); }
+  .toast.err { border-left-color:var(--bad); }
+  .takeoff-row { display:flex; gap:6px; margin-top:6px; }
+  .takeoff-row input { width:70px; margin:0; }
+  .takeoff-row button { flex:1; }
+</style>
+</head>
+<body>
+<aside>
+  <h1>🛸 Drone Platform</h1>
+
+  <section class="card">
+    <h2>Connection</h2>
+    <label>API base URL
+      <input id="baseUrl" placeholder="https://xxxx.ngrok-free.app"
+             value="http://127.0.0.1:8000">
+    </label>
+    <label>API key
+      <input id="apiKey" type="password" placeholder="X-API-Key">
+    </label>
+    <button id="connectBtn" style="width:100%">Connect</button>
+    <div style="margin-top:8px">
+      <span id="wsDot" class="dot"></span><span id="wsText">dashboard: disconnected</span><br>
+      <span id="fcuDot" class="dot"></span><span id="fcuText">vehicle link: unknown</span>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Telemetry</h2>
+    <div class="row"><span>Mode</span><span class="v" id="tMode">—</span></div>
+    <div class="row"><span>Armed</span><span class="v" id="tArmed">—</span></div>
+    <div class="row"><span>Altitude (rel)</span><span class="v" id="tAlt">—</span></div>
+    <div class="row"><span>Groundspeed</span><span class="v" id="tGs">—</span></div>
+    <div class="row"><span>Heading</span><span class="v" id="tHdg">—</span></div>
+    <div class="row"><span>Battery</span><span class="v" id="tBat">—</span></div>
+    <div class="row"><span>GPS</span><span class="v" id="tGps">—</span></div>
+    <div class="row"><span>Status</span><span class="v" id="tStatus" style="max-width:60%;text-align:right">—</span></div>
+  </section>
+
+  <section class="card">
+    <h2>Commands</h2>
+    <div class="btn-grid">
+      <button onclick="api('/api/arm')">ARM</button>
+      <button class="warn" onclick="api('/api/disarm')">DISARM</button>
+      <button onclick="api('/api/mode', {mode:'GUIDED'})">GUIDED</button>
+      <button class="warn" onclick="api('/api/rtl')">RTL</button>
+      <button class="danger" style="grid-column:span 2" onclick="api('/api/land')">LAND</button>
+    </div>
+    <div class="takeoff-row">
+      <input id="takeoffAlt" type="number" value="10" min="1" max="120"> m
+      <button onclick="takeoff()">TAKEOFF</button>
+    </div>
+    <p style="font-size:11px;color:var(--dim);margin:8px 0 0">
+      Click the map to send a GUIDED goto at the current altitude.</p>
+  </section>
+
+  <section class="card">
+    <h2>Log</h2>
+    <div id="log"></div>
+  </section>
+</aside>
+
+<div id="map"></div>
+<div id="toasts"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+"use strict";
+
+// Credentials live only in these variables (never persisted).
+let baseUrl = "";
+let apiKey = "";
+let ws = null;
+let lastState = null;
+
+const SEV = ["EMERG","ALERT","CRIT","ERROR","WARN","NOTICE","INFO","DEBUG"];
+const FIX = {0:"no GPS",1:"no fix",2:"2D",3:"3D",4:"DGPS",5:"RTK-flt",6:"RTK-fix"};
+const MAX_TRAIL = 600;
+
+const $ = id => document.getElementById(id);
+
+// When the gateway serves this page itself, it IS the API — pre-fill it.
+if (location.protocol.startsWith("http")) {
+  document.getElementById("baseUrl").value = location.origin;
+}
+
+// ---------------------------------------------------------------- map
+const map = L.map("map").setView([0, 0], 2);
+L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+  { maxZoom: 19, attribution: "&copy; OpenStreetMap" }).addTo(map);
+const marker = L.marker([0, 0], { title: "drone" });
+const trail = L.polyline([], { color: "#28c1ff", weight: 2.5 }).addTo(map);
+let markerOnMap = false, mapCentred = false;
+
+map.on("click", e => {
+  const p = lastState && lastState.position;
+  if (!p || p.lat == null) { toast("No vehicle position yet", true); return; }
+  // Hold the current altitude; fall back to the takeoff input on the ground.
+  const alt = (p.alt_rel != null && p.alt_rel > 1)
+      ? Math.round(p.alt_rel) : (parseFloat($("takeoffAlt").value) || 10);
+  const { lat, lng } = e.latlng;
+  if (confirm(`Fly to ${lat.toFixed(6)}, ${lng.toFixed(6)} at ${alt} m (relative)?`)) {
+    api("/api/goto", { lat: lat, lon: lng, alt: alt });
+  }
+});
+
+// --------------------------------------------------------------- wires
+$("connectBtn").addEventListener("click", connect);
+
+function connect() {
+  baseUrl = $("baseUrl").value.trim().replace(/\/+$/, "");
+  apiKey = $("apiKey").value.trim();
+  if (!baseUrl || !apiKey) { toast("Set the base URL and API key first", true); return; }
+  if (ws) { ws.onclose = null; ws.close(); }
+  const wsUrl = baseUrl.replace(/^http/i, "ws")
+      + "/ws/telemetry?api_key=" + encodeURIComponent(apiKey);
+  ws = new WebSocket(wsUrl);
+  ws.onopen = () => { setWs(true, "dashboard: connected"); log("WebSocket connected"); };
+  ws.onclose = e => {
+    setWs(false, e.code === 4401 ? "dashboard: rejected (bad API key)"
+                                 : "dashboard: disconnected");
+    log("WebSocket closed (code " + e.code + ")", e.code === 4401);
+  };
+  ws.onerror = () => log("WebSocket error", true);
+  ws.onmessage = ev => handleMessage(JSON.parse(ev.data));
+}
+
+function handleMessage(m) {
+  if (m.type === "state") { lastState = m.data; render(m.data); }
+  else if (m.type === "status") {
+    const line = "FCU [" + (SEV[m.severity] || m.severity) + "] " + m.text;
+    log(line, m.severity <= 4);
+    $("tStatus").textContent = m.text;
+  } else if (m.type === "link") {
+    setFcu(m.connected);
+    log("MAVLink link " + (m.connected ? "UP" : "DOWN"), !m.connected);
+    toast("Vehicle link " + (m.connected ? "restored" : "LOST"), !m.connected);
+  }
+}
+
+// -------------------------------------------------------------- render
+const fmt = (v, digits, unit) =>
+  v == null ? "—" : v.toFixed(digits) + (unit || "");
+
+function render(s) {
+  setFcu(s.link.connected);
+  $("tMode").textContent = s.mode || "—";
+  $("tArmed").textContent = s.armed ? "ARMED" : "disarmed";
+  $("tArmed").style.color = s.armed ? "var(--bad)" : "var(--ok)";
+  $("tAlt").textContent = fmt(s.position.alt_rel, 1, " m");
+  $("tGs").textContent = fmt(s.vfr.groundspeed, 1, " m/s");
+  $("tHdg").textContent = fmt(s.position.heading, 0, "°");
+  $("tBat").textContent = (s.battery.voltage == null ? "—" :
+      s.battery.voltage.toFixed(1) + " V" +
+      (s.battery.remaining == null ? "" : " / " + s.battery.remaining + "%"));
+  $("tGps").textContent = (s.gps.fix_type == null ? "—" :
+      (FIX[s.gps.fix_type] || s.gps.fix_type) +
+      (s.gps.satellites == null ? "" : " · " + s.gps.satellites + " sats"));
+  if (s.last_statustext) $("tStatus").textContent = s.last_statustext.text;
+
+  const p = s.position;
+  if (p.lat != null && (p.lat !== 0 || p.lon !== 0)) {
+    const ll = [p.lat, p.lon];
+    marker.setLatLng(ll);
+    if (!markerOnMap) { marker.addTo(map); markerOnMap = true; }
+    if (!mapCentred) { map.setView(ll, 18); mapCentred = true; }
+    const pts = trail.getLatLngs();
+    const last = pts[pts.length - 1];
+    if (!last || map.distance(last, ll) > 0.5) {
+      pts.push(L.latLng(ll));
+      if (pts.length > MAX_TRAIL) pts.shift();
+      trail.setLatLngs(pts);
+    }
+  }
+}
+
+function setWs(on, text) { $("wsDot").classList.toggle("on", on); $("wsText").textContent = text; }
+function setFcu(on) {
+  $("fcuDot").classList.toggle("on", on);
+  $("fcuText").textContent = "vehicle link: " + (on ? "up" : "DOWN");
+}
+
+// ------------------------------------------------------------ commands
+async function api(path, body) {
+  if (!baseUrl || !apiKey) { toast("Connect first", true); return; }
+  try {
+    const r = await fetch(baseUrl + path, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-API-Key": apiKey,
+        // Skips the ngrok free-plan browser interstitial on API calls.
+        "ngrok-skip-browser-warning": "1"
+      },
+      body: JSON.stringify(body || {})
+    });
+    const data = await r.json().catch(() => ({}));
+    if (r.ok) {
+      toast(path + " ✓ " + (data.ack || "sent"));
+      log(path + " → " + JSON.stringify(data));
+    } else {
+      toast(path + " ✗ " + (data.detail || ("HTTP " + r.status)), true);
+      log(path + " FAILED: " + (data.detail || ("HTTP " + r.status)), true);
+    }
+  } catch (err) {
+    toast(path + " ✗ " + err.message, true);
+    log(path + " network error: " + err.message, true);
+  }
+}
+
+function takeoff() {
+  const alt = parseFloat($("takeoffAlt").value);
+  if (!alt || alt <= 0) { toast("Invalid takeoff altitude", true); return; }
+  api("/api/takeoff", { altitude: alt });
+}
+
+// ------------------------------------------------------------ log/toast
+function log(text, isErr) {
+  const el = document.createElement("div");
+  if (isErr) el.className = "err";
+  el.textContent = new Date().toLocaleTimeString() + "  " + text;
+  const box = $("log");
+  box.prepend(el);
+  while (box.childElementCount > 200) box.lastChild.remove();
+}
+
+function toast(text, isErr) {
+  const el = document.createElement("div");
+  el.className = "toast" + (isErr ? " err" : "");
+  el.textContent = text;
+  $("toasts").appendChild(el);
+  setTimeout(() => el.remove(), 4500);
+}
+</script>
+</body>
+</html>
