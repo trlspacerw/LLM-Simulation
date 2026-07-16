@@ -12,7 +12,10 @@ import numpy as np
 from gz.transport13 import Node as GzNode
 from gz.msgs10.image_pb2 import Image as GzImage
 
-DISCOVERY_URL = "https://c244-2c0f-eb68-6ab-d400-881b-9f67-dd73-280e.ngrok-free.app"
+DISCOVERY_URL = os.environ.get(
+    "DRONE_SERVER_URL",
+    "https://334b-2c0f-eb68-6ab-d400-2496-f13d-d804-c966.ngrok-free.app")
+WS_BASE = DISCOVERY_URL.replace("https://", "wss://").replace("http://", "ws://")
 
 # Gazebo down-camera topic (iris_tracking world, iris_with_front_cam model)
 DOWN_CAMERA_TOPIC = ("/world/iris_tracking/model/iris/link/down_camera_link"
@@ -23,9 +26,8 @@ JPEG_QUALITY = 70
 class DroneClient:
     def __init__(self, drone_id):
         self.drone_id = drone_id
-        # self.ws_url = f"ws://localhost:8000/stream/{self.drone_id}"
-        self.ws_url = f"wss://c244-2c0f-eb68-6ab-d400-881b-9f67-dd73-280e.ngrok-free.app/stream/{self.drone_id}"
-        self.camera_ws_url = f"wss://c244-2c0f-eb68-6ab-d400-881b-9f67-dd73-280e.ngrok-free.app/camera/{self.drone_id}"
+        self.ws_url = f"{WS_BASE}/stream/{self.drone_id}"
+        self.camera_ws_url = f"{WS_BASE}/camera/{self.drone_id}"
         self.ws = None
         self.camera_ws = None
         # Gazebo down camera (gz-transport subscription, latest frame kept)
@@ -35,9 +37,8 @@ class DroneClient:
         self.gz_node = GzNode()
         if not self.gz_node.subscribe(GzImage, DOWN_CAMERA_TOPIC, self._on_gz_image):
             print(f"[CAMERA] WARNING: failed to subscribe to {DOWN_CAMERA_TOPIC}")
-        self.mav = mavutil.mavlink_connection('udp:127.0.0.1:14550')
-        self.mav.wait_heartbeat()
-        # then poll SYS_STATUS, GLOBAL_POSITION_INT, VFR_HUD, HEARTBEAT, GPS_RAW_INT, RANGEFINDER…
+        self.mav = None  # set by connect_mavlink() in start()
+        # poll SYS_STATUS, GLOBAL_POSITION_INT, VFR_HUD, HEARTBEAT, GPS_RAW_INT, RANGEFINDER…
         self.telemetry_data = {
             'battery_voltage': 0.0,
             'battery_level': 0,
@@ -238,6 +239,29 @@ class DroneClient:
             mode_id)
         print(f"[CMD] SET_MODE -> {mode}")
 
+    def takeoff(self, altitude=10.0):
+        """GUIDED -> arm -> MAV_CMD_NAV_TAKEOFF to the given altitude (metres)."""
+        self.set_flight_mode("GUIDED")
+        self.arm()
+        # The autopilot rejects NAV_TAKEOFF until it is actually armed, and
+        # arm() returns as soon as the request is sent — so wait for the
+        # ARMED state to appear in telemetry (updated by the stream_data
+        # thread) before sending the takeoff.
+        deadline = time.time() + 15
+        while self.telemetry_data['State'] != 'ARMED':
+            if time.time() > deadline:
+                print("[CMD] TAKEOFF aborted: vehicle did not arm within 15s")
+                return
+            time.sleep(0.5)
+        self.mav.mav.command_long_send(
+            self.mav.target_system,
+            self.mav.target_component,
+            mavutil.mavlink.MAV_CMD_NAV_TAKEOFF,
+            0,                  # confirmation
+            0, 0, 0, 0, 0, 0,
+            altitude)           # param7: target altitude above home (m)
+        print(f"[CMD] TAKEOFF sent (alt={altitude}m)")
+
     def handle_command(self, raw):
         """Parse a command message from the server and dispatch it to MAVLink."""
         try:
@@ -246,11 +270,15 @@ class DroneClient:
             print(f"[CMD] Bad command payload: {raw!r} ({e})")
             return
 
-        command = str(data.get("command", "")).lower()
+        command = str(data.get("command") or data.get("type") or "").lower()
         if command == "arm":
             self.arm()
         elif command == "disarm":
             self.disarm(force=bool(data.get("force", False)))
+        elif command == "takeoff":
+            self.takeoff(altitude=float(data.get("altitude", 10)))
+        elif command == "land":
+            self.set_flight_mode("LAND")
         elif command in ("set_mode", "mode", "change_mode"):
             mode = data.get("mode") or data.get("flight_mode")
             if mode:
