@@ -1,0 +1,40 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/trlspace/learn_ros2_ws/install/my_robot_interfaces/include/**",
+        "/home/trlspace/yahboomcar_ws/install/pkg_interfaces/include/**",
+        "/home/trlspace/ardu_ws/install/sdformat_urdf/include/**",
+        "/home/trlspace/ardu_ws/install/ros_ign_interfaces/include/**",
+        "/home/trlspace/ardu_ws/install/ros_gz_sim/include/**",
+        "/home/trlspace/ardu_ws/install/ros_gz_bridge/include/**",
+        "/home/trlspace/ardu_ws/install/ros_gz_interfaces/include/**",
+        "/home/trlspace/ardu_ws/install/micro_ros_agent/include/**",
+        "/home/trlspace/ardu_ws/install/gps_tools/include/**",
+        "/home/trlspace/ardu_ws/install/gps_msgs/include/**",
+        "/home/trlspace/ardu_ws/install/ardupilot_msgs/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/trlspace/ardu_ws/src/ardupilot_gazebo/include/**",
+        "/home/trlspace/ardu_ws/src/ardupilot_gz/ardupilot_gz_gazebo/include/**",
+        "/home/trlspace/ardu_ws/src/gps_umd/gps_tools/include/**",
+        "/home/trlspace/ardu_ws/src/micro_ros_agent/micro_ros_agent/include/**",
+        "/home/trlspace/ardu_ws/src/ros_gz/ros_gz_bridge/include/**",
+        "/home/trlspace/ardu_ws/src/ros_gz/ros_gz_sim/include/**",
+        "/home/trlspace/ardu_ws/src/sdformat_urdf/sdformat_urdf/include/**",
+        "/home/trlspace/ardu_ws/src/src/ros_gz/ros_gz_bridge/include/**",
+        "/home/trlspace/ardu_ws/src/src/ros_gz/ros_gz_sim/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ros2",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++17"
+    }
+  ],
+  "version": 4
+}

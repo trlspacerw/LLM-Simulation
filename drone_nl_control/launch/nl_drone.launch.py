@@ -1,7 +1,8 @@
-"""Launch file: natural language drone control on top of iris_tracking simulation."""
+"""Launch file: natural language drone control on top of iris_tracking or quadplane_tracking simulation."""
 
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
+from launch.conditions import LaunchConfigurationEquals
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
@@ -11,6 +12,16 @@ from launch.substitutions import PathJoinSubstitution
 
 def generate_launch_description():
     # ── arguments ─────────────────────────────────────────────────────────
+    vehicle_arg = DeclareLaunchArgument(
+        'vehicle',
+        default_value='quadrotor',
+        choices=['quadrotor', 'quadplane'],
+        description=(
+            'Vehicle type to simulate. '
+            '"quadrotor" = Iris quadcopter (ArduCopter); '
+            '"quadplane" = Alti Transition VTOL (ArduPlane + QuadPlane).'
+        ),
+    )
     mission_arg = DeclareLaunchArgument(
         'mission',
         default_value='',
@@ -22,7 +33,7 @@ def generate_launch_description():
         description='Launch RViz alongside the simulation.',
     )
 
-    # ── include iris_tracking simulation ─────────────────────────────────
+    # ── include iris_tracking simulation (quadrotor) ──────────────────────
     iris_tracking_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             PathJoinSubstitution([
@@ -34,6 +45,22 @@ def generate_launch_description():
         launch_arguments={
             'rviz': LaunchConfiguration('rviz'),
         }.items(),
+        condition=LaunchConfigurationEquals('vehicle', 'quadrotor'),
+    )
+
+    # ── include quadplane_tracking simulation (quadplane VTOL) ────────────
+    quadplane_tracking_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            PathJoinSubstitution([
+                FindPackageShare('ardupilot_gz_bringup'),
+                'launch',
+                'quadplane_tracking.launch.py',
+            ])
+        ),
+        launch_arguments={
+            'rviz': LaunchConfiguration('rviz'),
+        }.items(),
+        condition=LaunchConfigurationEquals('vehicle', 'quadplane'),
     )
 
     # ── mission controller node ───────────────────────────────────────────
@@ -49,8 +76,10 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        vehicle_arg,
         mission_arg,
         rviz_arg,
         iris_tracking_launch,
+        quadplane_tracking_launch,
         mission_controller,
     ])

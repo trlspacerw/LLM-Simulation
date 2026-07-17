@@ -484,6 +484,126 @@
   </joint>
 
 
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!--  RGB CAMERAS — 360° lateral coverage (front / back / left / right)  -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+
+  <!-- ─── cam_front ─── looks along +Z (nose) -->
+  <link name="cam_front_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.03 0.03 0.03"/></geometry>
+      <material name="cam_mat"><color rgba="1.0 0.0 0.0 1.0"/></material>
+    </visual>
+  </link>
+  <joint name="cam_front_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="cam_front_link"/>
+    <origin xyz="0 0 0.15" rpy="0 -1.5708 -1.5708"/>
+  </joint>
+
+  <!-- ─── cam_back ─── looks along -Z (tail) -->
+  <link name="cam_back_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.03 0.03 0.03"/></geometry>
+      <material name="cam_mat"><color rgba="1.0 0.0 0.0 1.0"/></material>
+    </visual>
+  </link>
+  <joint name="cam_back_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="cam_back_link"/>
+    <origin xyz="0 0 -0.95" rpy="0 1.5708 1.5708"/>
+  </joint>
+
+  <!-- ─── cam_left ─── looks along -X (left wing) -->
+  <link name="cam_left_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.03 0.03 0.03"/></geometry>
+      <material name="cam_mat"><color rgba="1.0 0.0 0.0 1.0"/></material>
+    </visual>
+  </link>
+  <joint name="cam_left_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="cam_left_link"/>
+    <origin xyz="-0.25 0 -0.05" rpy="1.5708 0 3.14159"/>
+  </joint>
+
+  <!-- ─── cam_right ─── looks along +X (right wing) -->
+  <link name="cam_right_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.03 0.03 0.03"/></geometry>
+      <material name="cam_mat"><color rgba="1.0 0.0 0.0 1.0"/></material>
+    </visual>
+  </link>
+  <joint name="cam_right_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="cam_right_link"/>
+    <origin xyz="0.25 0 -0.05" rpy="-1.5708 0 0"/>
+  </joint>
+
+
+  <!-- ─── cam_up ─── looks along +Y (up) -->
+  <link name="cam_up_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.03 0.03 0.03"/></geometry>
+      <material name="cam_mat"><color rgba="1.0 0.0 0.0 1.0"/></material>
+    </visual>
+  </link>
+  <joint name="cam_up_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="cam_up_link"/>
+    <origin xyz="0 0.1 -0.05" rpy="3.14159 0 1.5708"/>
+  </joint>
+
+  <!-- ─── cam_down ─── looks along -Y (down) -->
+  <link name="cam_down_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.03 0.03 0.03"/></geometry>
+      <material name="cam_mat"><color rgba="1.0 0.0 0.0 1.0"/></material>
+    </visual>
+  </link>
+  <joint name="cam_down_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="cam_down_link"/>
+    <origin xyz="0 -0.1 -0.05" rpy="0 0 1.5708"/>
+  </joint>
+
+
   <!-- ── Gazebo: structure links — kinematic + no gravity (moved via set_pose) ── -->
   <gazebo reference="base_link"><gravity>0</gravity><kinematic>1</kinematic></gazebo>
   <gazebo reference="wing_left"><gravity>0</gravity><kinematic>1</kinematic></gazebo>
@@ -497,6 +617,129 @@
   <gazebo reference="motor_2_link"><gravity>0</gravity><kinematic>1</kinematic></gazebo>
   <gazebo reference="motor_3_link"><gravity>0</gravity><kinematic>1</kinematic></gazebo>
   <gazebo reference="motor_4_link"><gravity>0</gravity><kinematic>1</kinematic></gazebo>
+
+  <!-- ── Gazebo: camera links — kinematic + no gravity ── -->
+  <gazebo reference="cam_front_link"><gravity>0</gravity><kinematic>1</kinematic></gazebo>
+  <gazebo reference="cam_back_link"><gravity>0</gravity><kinematic>1</kinematic></gazebo>
+  <gazebo reference="cam_left_link"><gravity>0</gravity><kinematic>1</kinematic></gazebo>
+  <gazebo reference="cam_right_link"><gravity>0</gravity><kinematic>1</kinematic></gazebo>
+  <gazebo reference="cam_up_link"><gravity>0</gravity><kinematic>1</kinematic></gazebo>
+  <gazebo reference="cam_down_link"><gravity>0</gravity><kinematic>1</kinematic></gazebo>
+
+  <!-- ── Gazebo: camera sensors ── -->
+  <gazebo reference="cam_front_link">
+    <sensor type="camera" name="cam_front_sensor">
+      <update_rate>10</update_rate>
+      <topic>/cam_front</topic>
+      <camera>
+        <horizontal_fov>1.0472</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>50</far>
+        </clip>
+      </camera>
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="cam_back_link">
+    <sensor type="camera" name="cam_back_sensor">
+      <update_rate>10</update_rate>
+      <topic>/cam_back</topic>
+      <camera>
+        <horizontal_fov>1.0472</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>50</far>
+        </clip>
+      </camera>
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="cam_left_link">
+    <sensor type="camera" name="cam_left_sensor">
+      <update_rate>10</update_rate>
+      <topic>/cam_left</topic>
+      <camera>
+        <horizontal_fov>1.0472</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>50</far>
+        </clip>
+      </camera>
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="cam_right_link">
+    <sensor type="camera" name="cam_right_sensor">
+      <update_rate>10</update_rate>
+      <topic>/cam_right</topic>
+      <camera>
+        <horizontal_fov>1.0472</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>50</far>
+        </clip>
+      </camera>
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="cam_up_link">
+    <sensor type="camera" name="cam_up_sensor">
+      <update_rate>10</update_rate>
+      <topic>/cam_up</topic>
+      <camera>
+        <horizontal_fov>1.0472</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>50</far>
+        </clip>
+      </camera>
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="cam_down_link">
+    <sensor type="camera" name="cam_down_sensor">
+      <update_rate>10</update_rate>
+      <topic>/cam_down</topic>
+      <camera>
+        <horizontal_fov>1.0472</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>50</far>
+        </clip>
+      </camera>
+    </sensor>
+  </gazebo>
 
   <!-- ── Gazebo: prop/pusher links — dynamic (no gravity), spun by JointController ── -->
   <!-- kinematic=0 so the physics engine can actuate the revolute joints            -->

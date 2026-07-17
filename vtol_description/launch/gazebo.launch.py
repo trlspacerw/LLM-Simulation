@@ -157,6 +157,26 @@ def generate_launch_description():
         ],
     )
 
+    # ── ros_gz_bridge: camera image topics ───────────────────────────────
+    # Bridges Gazebo camera image topics to ROS2 sensor_msgs/msg/Image.
+    cam_topics = ['cam_front', 'cam_back', 'cam_left', 'cam_right', 'cam_up', 'cam_down']
+    bridge_args = [
+        f'/{t}@sensor_msgs/msg/Image[gz.msgs.Image'
+        for t in cam_topics
+    ]
+    camera_bridge = TimerAction(
+        period=6.0,
+        actions=[
+            Node(
+                package='ros_gz_bridge',
+                executable='parameter_bridge',
+                name='camera_bridge',
+                output='screen',
+                arguments=bridge_args,
+            )
+        ],
+    )
+
     # ── RViz (optional) ──────────────────────────────────────────────────
     rviz2 = Node(
         package='rviz2',
@@ -176,5 +196,6 @@ def generate_launch_description():
         robot_state_publisher,
         joint_state_pub,
         spawn_vtol,
+        camera_bridge,
         rviz2,
     ])

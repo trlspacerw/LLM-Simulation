@@ -14,7 +14,7 @@ from gz.msgs10.image_pb2 import Image as GzImage
 
 DISCOVERY_URL = os.environ.get(
     "DRONE_SERVER_URL",
-    "https://334b-2c0f-eb68-6ab-d400-2496-f13d-d804-c966.ngrok-free.app")
+    "https://e678-2c0f-eb68-6ab-d400-d45d-c3ad-fdf1-e214.ngrok-free.app")
 WS_BASE = DISCOVERY_URL.replace("https://", "wss://").replace("http://", "ws://")
 
 # Gazebo down-camera topic (iris_tracking world, iris_with_front_cam model)

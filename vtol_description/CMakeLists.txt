@@ -15,6 +15,14 @@ install(
 )
 
 install(
+  PROGRAMS
+    scripts/obstacle_avoidance.py
+    scripts/radio_controller.py
+    scripts/vtol_physics.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+install(
   FILES
     derick_VTOL_readme.md
     custom_VTOL_URDF_setup.md
