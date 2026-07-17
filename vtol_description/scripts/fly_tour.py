@@ -89,9 +89,15 @@ def _stream_thread():
 
 
 # ── path construction ────────────────────────────────────────────────────────
-ALT = 18.0                 # cruise altitude AGL (m)
+ALT = 24.0                 # cruise altitude AGL (m) — clears the houses
 Z_HI = GROUND_Z + ALT
-R = 28.0                   # tour circle radius (between outer ring and houses)
+R_H = 50.0                 # house-ring radius the figure-eight lobes trace
+LOOPS = 2                  # number of figure-eights to fly
+H_SPEED = 10.0             # horizontal speed (m/s)
+
+# House positions in the world (must match the world SDF include poses).
+HOUSES = [('N', 0.0, 50.0), ('E', 50.0, 2.0), ('S', 2.0, -50.0),
+          ('W', -50.0, 0.0), ('NW', -37.0, 37.0)]
 
 
 def _seg_line(p0, p1, speed):
@@ -111,22 +117,54 @@ def _seg_arc(cx, cy, z, r, a0, a1, speed):
             for i in range(n + 1)]
 
 
-def build_path():
-    pts = []
-    pts += _seg_line((0, 0, GROUND_Z), (0, 0, Z_HI), speed=3.0)      # takeoff
-    pts += _seg_line((0, 0, Z_HI), (R, 0, Z_HI), speed=6.0)          # transit out
-    pts += _seg_arc(0, 0, Z_HI, R, 0.0, 2.5 * math.pi, speed=7.0)    # 1.25 loops CCW
-    pts += _seg_line((0, R, Z_HI), (0, 0, Z_HI), speed=6.0)          # transit back
-    pts += _seg_line((0, 0, Z_HI), (0, 0, GROUND_Z), speed=3.0)      # land
-    # yaw per point from horizontal velocity (carry forward when hovering/vertical)
-    out, last = [], math.pi / 2   # start facing +X travel (psi = 0 + pi/2)
+def _figure_eight():
+    """One figure-eight over the houses, starting/ending at the center (0,0).
+
+    Crossover at the origin; the NW lobe arcs over the N, NW and W houses and
+    the SE lobe arcs over the E and S houses, joined by the two crossing
+    diameters (vertical S<->N and horizontal W<->E)."""
+    hp, r, s = math.pi / 2, R_H, H_SPEED
+    seg = []
+    seg += _seg_line((0, 0, Z_HI), (0, r, Z_HI), speed=s)        # center -> N
+    seg += _seg_arc(0, 0, Z_HI, r, hp, math.pi, speed=s)         # N -> NW -> W (CCW)
+    seg += _seg_line((-r, 0, Z_HI), (r, 0, Z_HI), speed=s)       # W -> center -> E
+    seg += _seg_arc(0, 0, Z_HI, r, 0.0, -hp, speed=s)            # E -> SE -> S (CW)
+    seg += _seg_line((0, -r, Z_HI), (0, 0, Z_HI), speed=s)       # S -> center
+    return seg
+
+
+def _smooth_yaw(pts, alpha=0.10):
+    """Heading from horizontal velocity (psi = theta + 90deg), low-pass filtered
+    so the ~90 deg turns at the lobe corners are flown as smooth banks."""
+    out, psi = [], math.pi / 2
     for i, (x, y, z) in enumerate(pts):
         if i + 1 < len(pts):
             dx, dy = pts[i + 1][0] - x, pts[i + 1][1] - y
             if dx * dx + dy * dy > 1e-6:
-                last = math.atan2(dy, dx) + math.pi / 2   # psi = theta + 90deg
-        out.append((x, y, z, last))
+                target = math.atan2(dy, dx) + math.pi / 2
+                d = (target - psi + math.pi) % (2 * math.pi) - math.pi   # wrap
+                psi += alpha * d
+        out.append((x, y, z, psi))
     return out
+
+
+def build_path():
+    pts = []
+    pts += _seg_line((0, 0, GROUND_Z), (0, 0, Z_HI), speed=3.0)      # takeoff
+    for _ in range(LOOPS):
+        pts += _figure_eight()                                      # figure-eights
+    pts += _seg_line((0, 0, Z_HI), (0, 0, GROUND_Z), speed=3.0)      # land
+    path = _smooth_yaw(pts)
+    _report_house_coverage(path)
+    return path
+
+
+def _report_house_coverage(path):
+    print('[tour] figure-eight closest approach to each house '
+          f'(alt {ALT:.0f} m):', flush=True)
+    for name, hx, hy in HOUSES:
+        d = min(math.hypot(x - hx, y - hy) for x, y, _, _ in path)
+        print(f'         {name:>2} ({hx:+.0f},{hy:+.0f}): {d:4.1f} m', flush=True)
 
 
 def main():
