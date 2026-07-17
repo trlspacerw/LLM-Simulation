@@ -37,3 +37,4 @@ drone_development/eeprom.bin
 drone_development/mav.parm
 drone_development/drone-platform/logs/
 drone_development/drone-platform/.env
+.vscode/browse.vc.db*
