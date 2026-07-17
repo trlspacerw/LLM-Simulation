@@ -35,11 +35,15 @@ def generate_launch_description():
 
     # Gazebo resolves package:// URIs to model:// when ingesting URDF.
     # Add the install share parent so it can find model://vtol_description/...
+    # Also add the package's models/ dir so the world can resolve bare
+    # model:// URIs such as model://bush (the textured bushes in the world).
     gz_resource_path = os.path.join(get_package_prefix('vtol_description'), 'share')
-    if 'GZ_SIM_RESOURCE_PATH' in os.environ:
-        os.environ['GZ_SIM_RESOURCE_PATH'] += ':' + gz_resource_path
-    else:
-        os.environ['GZ_SIM_RESOURCE_PATH'] = gz_resource_path
+    models_path = os.path.join(pkg, 'models')
+    for p in (gz_resource_path, models_path):
+        if 'GZ_SIM_RESOURCE_PATH' in os.environ:
+            os.environ['GZ_SIM_RESOURCE_PATH'] += ':' + p
+        else:
+            os.environ['GZ_SIM_RESOURCE_PATH'] = p
     # sdformat_urdf also uses SDF_PATH for the same resolution
     if 'SDF_PATH' in os.environ:
         os.environ['SDF_PATH'] += ':' + gz_resource_path
